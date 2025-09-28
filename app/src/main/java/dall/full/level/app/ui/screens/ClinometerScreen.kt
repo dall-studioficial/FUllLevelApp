@@ -57,8 +57,8 @@ fun ClinometerScreen() {
     ) {
         Column(
             modifier = Modifier
-                .fillMaxSize()
-                .padding(16.dp),
+                .padding(16.dp)
+                .fillMaxSize(),
             horizontalAlignment = Alignment.CenterHorizontally
         ) {
             // Barra superior con título y estado
@@ -77,7 +77,6 @@ fun ClinometerScreen() {
                 actions = {
                     // Indicador de estado
                     Card(
-                        modifier = Modifier.padding(end = 8.dp),
                         colors = CardDefaults.cardColors(
                             containerColor = if (clinometerData.isCalibrated)
                                 Color(0xFF4CAF50) else Color(0xFFFF9800)
@@ -110,17 +109,6 @@ fun ClinometerScreen() {
                     modifier = Modifier
                         .weight(1f)
                         .fillMaxWidth()
-                )
-
-                // Panel de información adicional
-                InfoPanel(
-                    mainAngle = mainAngle,
-                    azimuthAngle = clinometerData.azimuthAngle,
-                    signedAngle = signedAngle,
-                    isLeveled = isLeveled,
-                    calibrationOffset = calibrationOffset,
-                    onCalibrationOffsetChange = { viewModel.adjustCalibration(it) },
-                    onResetCalibration = { viewModel.resetCalibration() }
                 )
             }
         }
@@ -178,138 +166,5 @@ private fun ErrorCard(
                 )
             }
         }
-    }
-}
-
-/**
- * Panel de información adicional con datos complementarios
- */
-@Composable
-private fun InfoPanel(
-    mainAngle: Float,
-    azimuthAngle: Float,
-    signedAngle: Float,
-    isLeveled: Boolean,
-    calibrationOffset: Float,
-    onCalibrationOffsetChange: (Float) -> Unit,
-    onResetCalibration: () -> Unit
-) {
-    Card(
-        modifier = Modifier
-            .fillMaxWidth()
-            .padding(vertical = 16.dp),
-        colors = CardDefaults.cardColors(
-            containerColor = Color(0xFF424242)
-        ),
-        shape = RoundedCornerShape(16.dp)
-    ) {
-        Column(
-            modifier = Modifier
-                .fillMaxWidth()
-                .padding(20.dp),
-            verticalArrangement = Arrangement.SpaceEvenly
-        ) {
-            Row(
-                modifier = Modifier
-                    .fillMaxWidth(),
-                horizontalArrangement = Arrangement.SpaceEvenly
-            ) {
-                InfoItem(
-                    label = "Inclinación",
-                    value = "${mainAngle.toInt()}°",
-                    color = if (isLeveled) Color(0xFF4CAF50) else Color(0xFFFF5722)
-                )
-
-                InfoItem(
-                    label = "Azimut",
-                    value = "${azimuthAngle.toInt()}°",
-                    color = Color(0xFF2196F3)
-                )
-
-                InfoItem(
-                    label = "Rotación",
-                    value = "${signedAngle.toInt()}°",
-                    color = if (isLeveled) Color(0xFF4CAF50) else Color(0xFFFF9800)
-                )
-            }
-
-            Row(
-                modifier = Modifier
-                    .fillMaxWidth(),
-                horizontalArrangement = Arrangement.SpaceEvenly
-            ) {
-                InfoItem(
-                    label = "Offset de calibración",
-                    value = "${calibrationOffset.toInt()}°",
-                    color = Color(0xFF4CAF50)
-                )
-
-                Button(
-                    onClick = { onCalibrationOffsetChange(calibrationOffset + 1f) },
-                    colors = ButtonDefaults.buttonColors(
-                        containerColor = Color(0xFF4CAF50)
-                    )
-                ) {
-                    Text(
-                        text = "+1°",
-                        color = Color.White
-                    )
-                }
-
-                Button(
-                    onClick = { onCalibrationOffsetChange(calibrationOffset - 1f) },
-                    colors = ButtonDefaults.buttonColors(
-                        containerColor = Color(0xFF4CAF50)
-                    )
-                ) {
-                    Text(
-                        text = "-1°",
-                        color = Color.White
-                    )
-                }
-
-                Button(
-                    onClick = onResetCalibration,
-                    colors = ButtonDefaults.buttonColors(
-                        containerColor = Color(0xFF4CAF50)
-                    )
-                ) {
-                    Text(
-                        text = "Resetear",
-                        color = Color.White
-                    )
-                }
-            }
-        }
-    }
-}
-
-/**
- * Componente individual de información
- */
-@Composable
-private fun InfoItem(
-    label: String,
-    value: String,
-    color: Color
-) {
-    Column(
-        horizontalAlignment = Alignment.CenterHorizontally
-    ) {
-        Text(
-            text = label,
-            fontSize = 12.sp,
-            color = Color(0xFFBDBDBD),
-            fontWeight = FontWeight.Medium
-        )
-
-        Spacer(modifier = Modifier.height(4.dp))
-
-        Text(
-            text = value,
-            fontSize = 18.sp,
-            color = color,
-            fontWeight = FontWeight.Bold
-        )
     }
 }
