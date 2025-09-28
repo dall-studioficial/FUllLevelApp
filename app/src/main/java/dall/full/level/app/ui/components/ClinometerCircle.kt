@@ -13,7 +13,11 @@ import androidx.compose.material3.Card
 import androidx.compose.material3.CardDefaults
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.remember
+import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
@@ -42,15 +46,28 @@ fun ClinometerCircle(
         label = "pitch"
     )
 
+    // Interpolación angular inteligente para que la aguja siga la ruta corta
+    fun shortestAngleDistance(from: Float, to: Float): Float {
+        val diff = (to - from + 540f) % 360f - 180f
+        return from + diff
+    }
+
+    val previousAzimuthState = remember { mutableStateOf(clinometerData.azimuthAngle) }
+    val previousAzimuth = previousAzimuthState.value
+    val targetAzimuth = shortestAngleDistance(previousAzimuth, clinometerData.azimuthAngle)
     val animatedAzimuth by animateFloatAsState(
-        targetValue = clinometerData.azimuthAngle, // Para compensar la orientación de la pantalla
+        targetValue = targetAzimuth,
         animationSpec = tween(150),
         label = "azimuth"
     )
+    LaunchedEffect(targetAzimuth) { previousAzimuthState.value = targetAzimuth }
 
     // Calcular el ángulo principal (absoluto para mostrar)
     val mainAngle = abs(animatedPitch)
     val isLeveled = mainAngle <= 2.0f
+
+    // Normalizar el ángulo de la aguja para evitar vueltas bruscas
+    val normalizedAzimuth = ((animatedAzimuth % 360f) + 360f) % 360f
 
     Box(
         modifier = modifier.fillMaxSize(),
@@ -76,14 +93,14 @@ fun ClinometerCircle(
             modifier = Modifier
                 .fillMaxSize()
                 .graphicsLayer {
-                    rotationZ = +animatedAzimuth
+                    rotationZ = normalizedAzimuth
                 }
         )
 
         // Indicador central rotado como antes
         Card(
             modifier = Modifier
-                .graphicsLayer { rotationZ = +animatedAzimuth },
+                .graphicsLayer { rotationZ = normalizedAzimuth },
             colors = CardDefaults.cardColors(
                 containerColor = Color.White.copy(alpha = 0.9f)
             ),
