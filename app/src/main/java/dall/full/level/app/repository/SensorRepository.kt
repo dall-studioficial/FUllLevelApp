@@ -9,10 +9,7 @@ import dall.full.level.app.data.ClinometerData
 import kotlinx.coroutines.channels.awaitClose
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.callbackFlow
-import kotlin.math.abs
-import kotlin.math.acos
 import kotlin.math.atan2
-import kotlin.math.sqrt
 
 /**
  * Repositorio para manejar los sensores del dispositivo
@@ -86,7 +83,6 @@ class SensorRepository(context: Context) {
                         // Calculamos hacia dónde apunta "arriba" del teléfono en el mundo real
                         val x = accelerometerValues[0]
                         val y = accelerometerValues[1]
-                        val z = accelerometerValues[2]
 
                         // Para rotación del teléfono (como ver video horizontal)
                         // Calculamos el Roll usando atan2
@@ -110,7 +106,6 @@ class SensorRepository(context: Context) {
                         val calibratedRoll = calibrateAngle(smoothedRoll)
 
                         // Obtener azimut del cálculo original para la orientación absoluta
-                        val azimuth = Math.toDegrees(orientationAngles[0].toDouble()).toFloat()
                         val roll = Math.toDegrees(orientationAngles[2].toDouble()).toFloat()
 
                         val clinometerData = ClinometerData(

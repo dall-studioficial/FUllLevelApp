@@ -36,12 +36,6 @@ fun ClinometerScreen() {
     val clinometerData by viewModel.clinometerState.collectAsStateWithLifecycle()
     val isError by viewModel.isError.collectAsStateWithLifecycle()
     val errorMessage by viewModel.errorMessage.collectAsStateWithLifecycle()
-    val calibrationOffset by viewModel.calibrationOffset.collectAsStateWithLifecycle()
-
-    // Calcular valores adicionales
-    val mainAngle = viewModel.getMainAngle()
-    val signedAngle = viewModel.getSignedAngle() // Ángulo con signo para la aguja
-    val isLeveled = viewModel.isLeveled()
 
     Box(
         modifier = Modifier
