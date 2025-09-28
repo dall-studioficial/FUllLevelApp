@@ -33,7 +33,8 @@ import kotlin.math.abs
 @Composable
 fun ClinometerCircle(
     clinometerData: ClinometerData,
-    modifier: Modifier = Modifier
+    modifier: Modifier = Modifier,
+    isRotatedReference: Boolean = false
 ) {
     val animatedPitch by animateFloatAsState(
         targetValue = clinometerData.pitchAngle, // Usamos Pitch para rotación del teléfono
@@ -63,6 +64,9 @@ fun ClinometerCircle(
             modifier = Modifier
                 .fillMaxSize()
                 .aspectRatio(1f)
+                .graphicsLayer {
+                    rotationZ = if (isRotatedReference) 90f else 0f
+                }
         )
 
         // Aguja personalizada como imagen

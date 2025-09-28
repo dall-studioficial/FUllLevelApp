@@ -36,6 +36,7 @@ fun ClinometerScreen() {
     val clinometerData by viewModel.clinometerState.collectAsStateWithLifecycle()
     val isError by viewModel.isError.collectAsStateWithLifecycle()
     val errorMessage by viewModel.errorMessage.collectAsStateWithLifecycle()
+    val isRotatedReference by viewModel.isRotatedReference.collectAsStateWithLifecycle()
 
     Box(
         modifier = Modifier
@@ -85,6 +86,19 @@ fun ClinometerScreen() {
                             fontWeight = FontWeight.Medium
                         )
                     }
+                    Spacer(modifier = Modifier.width(12.dp))
+                    // Botón para girar la referencia 0°/90°
+                    Button(
+                        onClick = { viewModel.toggleReferenceMode() },
+                        colors = ButtonDefaults.buttonColors(containerColor = Color.White.copy(alpha = 0.10f)),
+                        contentPadding = PaddingValues(horizontal = 10.dp, vertical = 4.dp)
+                    ) {
+                        Text(
+                            text = if (isRotatedReference) "90° arriba" else "0° arriba",
+                            color = Color.White,
+                            fontSize = 12.sp
+                        )
+                    }
                 }
             )
 
@@ -102,7 +116,8 @@ fun ClinometerScreen() {
                     clinometerData = clinometerData,
                     modifier = Modifier
                         .weight(1f)
-                        .fillMaxWidth()
+                        .fillMaxWidth(),
+                    isRotatedReference = isRotatedReference
                 )
             }
         }

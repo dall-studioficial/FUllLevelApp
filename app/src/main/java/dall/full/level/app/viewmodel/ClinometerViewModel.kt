@@ -27,9 +27,9 @@ class ClinometerViewModel(
     private val _errorMessage = MutableStateFlow("")
     val errorMessage: StateFlow<String> = _errorMessage.asStateFlow()
 
-    // Offset de calibración manual
-    private val _calibrationOffset = MutableStateFlow(0f)
-    val calibrationOffset: StateFlow<Float> = _calibrationOffset.asStateFlow()
+    // Nuevo estado: indica si la referencia está girada (0°=vertical o 90°=vertical)
+    private val _isRotatedReference = MutableStateFlow(false)
+    val isRotatedReference: StateFlow<Boolean> = _isRotatedReference.asStateFlow()
 
     init {
         startSensorMonitoring()
@@ -52,24 +52,14 @@ class ClinometerViewModel(
                     _errorMessage.value = "Error al leer sensores: ${exception.message}"
                 }
                 .collect { clinometerData ->
-                    _clinometerState.value = clinometerData
+                    val mappedPitch = mapAngleToTransportador(
+                        clinometerData.pitchAngle,
+                        _isRotatedReference.value
+                    )
+                    _clinometerState.value = clinometerData.copy(pitchAngle = mappedPitch)
                     _isError.value = false
                 }
         }
-    }
-
-    /**
-     * Ajusta el offset de calibración
-     */
-    fun adjustCalibration(offset: Float) {
-        _calibrationOffset.value = offset
-    }
-
-    /**
-     * Resetea la calibración a 0
-     */
-    fun resetCalibration() {
-        _calibrationOffset.value = 0f
     }
 
     /**
@@ -82,29 +72,28 @@ class ClinometerViewModel(
     }
 
     /**
-     * Obtiene el ángulo principal para mostrar (Roll para rotación del teléfono)
+     * Alterna el modo de referencia del transportador
      */
-    fun getMainAngle(): Float {
-        val state = _clinometerState.value
-        val calibratedAngle = state.pitchAngle + _calibrationOffset.value
-        // Para nivel vertical, usamos principalmente Pitch
-        return kotlin.math.abs(calibratedAngle)
+    fun toggleReferenceMode() {
+        _isRotatedReference.value = !_isRotatedReference.value
+        // Al cambiar el modo, actualizamos el valor mostrado
+        applyReferenceMode()
     }
 
     /**
-     * Obtiene el ángulo con signo para la aguja (positivo/negativo) - rotación del teléfono
+     * Mapea el ángulo para que siempre esté en el rango correcto de 0°-90° en el transportador
      */
-    fun getSignedAngle(): Float {
-        val state = _clinometerState.value
-        return state.pitchAngle + _calibrationOffset.value
+    private fun mapAngleToTransportador(pitch: Float, rotated: Boolean): Float {
+        val baseAngle = if (rotated) 90f - pitch else pitch
+        val mapped = kotlin.math.abs(baseAngle % 180f)
+        return if (mapped > 90f) 180f - mapped else mapped
     }
 
-    /**
-     * Determina si el dispositivo está nivelado (dentro de un margen de tolerancia).
-     * Usa el ángulo calibrado (Roll + offset), no el valor absoluto.
-     */
-    fun isLeveled(tolerance: Float = 2.0f): Boolean {
-        val angle = getSignedAngle()
-        return angle >= -tolerance && angle <= tolerance
+    // Ajusta el ángulo según el modo de referencia
+    private fun applyReferenceMode() {
+        val current = _clinometerState.value
+        val mappedPitch = mapAngleToTransportador(current.pitchAngle, _isRotatedReference.value)
+        _clinometerState.value = current.copy(pitchAngle = mappedPitch)
     }
+
 }
