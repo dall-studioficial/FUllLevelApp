@@ -114,11 +114,13 @@ fun ClinometerCircle(
                 horizontalAlignment = Alignment.CenterHorizontally,
                 modifier = Modifier
                     .padding(16.dp)
-                    .graphicsLayer { rotationZ = -animatedAzimuth }
+                    .graphicsLayer {
+                        rotationZ = 180f
+                    }
             ) {
                 Text(
                     text = "${mainAngle.toInt()}°",
-                    fontSize = 58.sp,
+                    fontSize = 48.sp,
                     fontWeight = FontWeight.Bold,
                     color = if (isLeveled) Color(0xFF2E7D32) else Color(0xFFD32F2F)
                 )
