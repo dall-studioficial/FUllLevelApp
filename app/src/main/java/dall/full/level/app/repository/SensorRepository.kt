@@ -82,8 +82,8 @@ class SensorRepository(context: Context) {
                     if (success) {
                         SensorManager.getOrientation(rotationMatrix, orientationAngles)
 
-                        // Método correcto para rotación del teléfono (Roll)
-                        // Vertical = 0°, Rotado horizontal = 90°
+                        // Método para obtener orientación absoluta hacia "arriba" (gravedad)
+                        // Calculamos hacia dónde apunta "arriba" del teléfono en el mundo real
                         val x = accelerometerValues[0]
                         val y = accelerometerValues[1]
                         val z = accelerometerValues[2]
@@ -100,20 +100,23 @@ class SensorRepository(context: Context) {
                             else -> rollDegrees
                         }
 
-                        // Aplicar filtro de suavizado para estabilizar las lecturas
-                        val smoothedRoll = applyLowPassFilter(rollDegrees)
+                        // ORIENTACIÓN ABSOLUTA: Calcular hacia dónde apunta "arriba" del teléfono
+                        // usando el vector de gravedad para determinar la orientación real
+                        val upDirectionRadians = atan2(-x.toDouble(), -y.toDouble())
+                        val upDirectionDegrees = Math.toDegrees(upDirectionRadians).toFloat()
 
-                        // Calibrar el ángulo para mayor compatibilidad
+                        // Aplicar filtro de suavizado
+                        val smoothedRoll = applyLowPassFilter(rollDegrees)
                         val calibratedRoll = calibrateAngle(smoothedRoll)
 
-                        // Obtener azimut del cálculo original
+                        // Obtener azimut del cálculo original para la orientación absoluta
                         val azimuth = Math.toDegrees(orientationAngles[0].toDouble()).toFloat()
                         val roll = Math.toDegrees(orientationAngles[2].toDouble()).toFloat()
 
                         val clinometerData = ClinometerData(
-                            pitchAngle = calibratedRoll, // Ahora usamos Roll como ángulo principal
+                            pitchAngle = calibratedRoll, // Roll como ángulo principal
                             rollAngle = roll,
-                            azimuthAngle = if (azimuth < 0) azimuth + 360 else azimuth,
+                            azimuthAngle = upDirectionDegrees, // Orientación absoluta hacia arriba
                             isCalibrated = true
                         )
 

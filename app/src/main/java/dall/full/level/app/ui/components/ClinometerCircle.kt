@@ -33,9 +33,15 @@ fun ClinometerCircle(
     modifier: Modifier = Modifier
 ) {
     val animatedPitch by animateFloatAsState(
-        targetValue = clinometerData.pitchAngle, // Usamos Pitch para inclinación vertical
+        targetValue = clinometerData.pitchAngle, // Usamos Pitch para rotación del teléfono
         animationSpec = tween(150),
         label = "pitch"
+    )
+
+    val animatedAzimuth by animateFloatAsState(
+        targetValue = clinometerData.azimuthAngle, // Para compensar la orientación de la pantalla
+        animationSpec = tween(150),
+        label = "azimuth"
     )
 
     // Calcular el ángulo principal (absoluto para mostrar)
@@ -49,11 +55,13 @@ fun ClinometerCircle(
         // Círculo principal del clinómetro
         Canvas(
             modifier = Modifier
-                .size(320.dp)
-                .clip(CircleShape)
+                .fillMaxSize()
+                .padding(20.dp) // Padding para que no toque los bordes
+                .aspectRatio(1f) // Mantener proporción cuadrada
         ) {
             drawClinometerCircle(
                 pitchAngle = animatedPitch, // Usamos Pitch como ángulo principal
+                azimuthAngle = animatedAzimuth, // Para orientación de la aguja
                 mainAngle = mainAngle,
                 isLeveled = isLeveled
             )
@@ -114,12 +122,13 @@ fun ClinometerCircle(
  */
 private fun DrawScope.drawClinometerCircle(
     pitchAngle: Float,
+    azimuthAngle: Float,
     mainAngle: Float,
     isLeveled: Boolean
 ) {
     val centerX = size.width / 2
     val centerY = size.height / 2
-    val radius = size.minDimension / 2 - 20.dp.toPx()
+    val radius = size.minDimension / 2 - 30.dp.toPx() // Un poco más de margen
 
     // Colores
     val backgroundColor = Color(0xFFE8E8E8)
@@ -145,9 +154,20 @@ private fun DrawScope.drawClinometerCircle(
     // Marcas de grados (cada 15 grados)
     for (i in 0 until 24) {
         val angle = i * 15f
-        val isMainTick = i % 6 == 0 // Cada 90 grados
-        val tickLength = if (isMainTick) 20.dp.toPx() else 10.dp.toPx()
-        val tickWidth = if (isMainTick) 3.dp.toPx() else 1.dp.toPx()
+        val isMainTick = i % 6 == 0 // Cada 90 grados (marcas principales)
+        val isSecondaryTick = i % 2 == 0 // Cada 30 grados (marcas secundarias con números)
+
+        val tickLength = when {
+            isMainTick -> radius * 0.08f // Marcas principales proporcionales al radio
+            isSecondaryTick -> radius * 0.05f // Marcas secundarias proporcionales
+            else -> radius * 0.025f // Marcas pequeñas proporcionales
+        }
+
+        val tickWidth = when {
+            isMainTick -> radius * 0.008f
+            isSecondaryTick -> radius * 0.005f
+            else -> radius * 0.003f
+        }
 
         rotate(angle, Offset(centerX, centerY)) {
             drawLine(
@@ -158,22 +178,35 @@ private fun DrawScope.drawClinometerCircle(
             )
         }
 
-        // Números en las marcas principales
-        if (isMainTick && angle != 0f) {
-            val textRadius = radius - 35.dp.toPx()
+        // Números en las marcas principales (cada 90°) y secundarias (cada 30°)
+        if (isSecondaryTick) {
+            val textRadius = radius - (radius * 0.12f) // Posición proporcional al radio
             val textX =
                 centerX + cos(Math.toRadians((angle - 90).toDouble())).toFloat() * textRadius
             val textY =
                 centerY + sin(Math.toRadians((angle - 90).toDouble())).toFloat() * textRadius
 
+            // Tamaño de texto proporcional al radio
+            val textSize = if (isMainTick) radius * 0.06f else radius * 0.045f
+            val textColor =
+                if (isMainTick) android.graphics.Color.BLACK else android.graphics.Color.GRAY
+
+            // Para 0°, mostramos "0°", para otros ángulos el valor normal
+            val displayText = if (angle == 0f) "0°" else "${angle.toInt()}°"
+
             drawContext.canvas.nativeCanvas.drawText(
-                "${angle.toInt()}°",
+                displayText,
                 textX,
-                textY + 5.dp.toPx(),
+                textY + (radius * 0.02f), // Offset proporcional
                 android.graphics.Paint().apply {
-                    color = android.graphics.Color.GRAY
-                    textSize = 12.sp.toPx()
+                    color = textColor
+                    this.textSize = textSize
                     textAlign = android.graphics.Paint.Align.CENTER
+                    typeface = if (isMainTick) {
+                        android.graphics.Typeface.DEFAULT_BOLD
+                    } else {
+                        android.graphics.Typeface.DEFAULT
+                    }
                 }
             )
         }
@@ -189,20 +222,20 @@ private fun DrawScope.drawClinometerCircle(
         color = Color(0x30000000),
         radius = bubbleRadius,
         center = Offset(centerX, centerY),
-        style = Stroke(width = 2.dp.toPx())
+        style = Stroke(width = radius * 0.005f) // Proporcional al radio
     )
 
     // Burbuja indicadora
     drawCircle(
         color = accentColor,
-        radius = 12.dp.toPx(),
+        radius = radius * 0.04f, // Proporcional al radio
         center = Offset(bubbleX, bubbleY)
     )
 
     // Punto central de referencia
     drawCircle(
         color = Color(0xFF424242),
-        radius = 4.dp.toPx(),
+        radius = radius * 0.015f, // Proporcional al radio
         center = Offset(centerX, centerY)
     )
 
@@ -211,16 +244,16 @@ private fun DrawScope.drawClinometerCircle(
         color = Color(0x50424242),
         start = Offset(centerX - radius * 0.8f, centerY),
         end = Offset(centerX + radius * 0.8f, centerY),
-        strokeWidth = 1.dp.toPx()
+        strokeWidth = radius * 0.003f // Proporcional al radio
     )
 
-    // AGUJA que apunta al ángulo actual
-    val needleAngle = pitchAngle // El ángulo de la aguja basado en Pitch
+    // AGUJA que apunta siempre hacia arriba en el mundo real (usando gravedad)
+    val needleAngle = azimuthAngle // Usa orientación absoluta basada en gravedad
     val needleLength = radius * 0.75f
-    val needleWidth = 4.dp.toPx()
+    val needleWidth = radius * 0.012f // Proporcional al radio
 
     // Calcular la posición de la punta de la aguja
-    // Convertir ángulo a radianes y ajustar para que 0° esté arriba
+    // La aguja apunta hacia "arriba" en el mundo real, sin importar cómo gires el teléfono
     val needleRadians = Math.toRadians((needleAngle + 90).toDouble())
     val needleEndX = centerX + cos(needleRadians).toFloat() * needleLength
     val needleEndY = centerY + sin(needleRadians).toFloat() * needleLength
@@ -237,7 +270,7 @@ private fun DrawScope.drawClinometerCircle(
     // Círculo central para la base de la aguja
     drawCircle(
         color = if (isLeveled) Color(0xFF2E7D32) else Color(0xFFD32F2F),
-        radius = 8.dp.toPx(),
+        radius = radius * 0.025f, // Proporcional al radio
         center = Offset(centerX, centerY)
     )
 }
