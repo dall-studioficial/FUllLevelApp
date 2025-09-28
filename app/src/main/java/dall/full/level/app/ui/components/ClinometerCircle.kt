@@ -69,6 +69,15 @@ fun ClinometerCircle(
     // Normalizar el ángulo de la aguja para evitar vueltas bruscas
     val normalizedAzimuth = ((animatedAzimuth % 360f) + 360f) % 360f
 
+    // Función para mostrar ángulo suavizado y fiable en los extremos
+    fun smartAngleDisplay(angle: Float): Int {
+        return when {
+            angle >= 89.5f -> 90
+            angle <= 0.5f -> 0
+            else -> angle.toInt()
+        }
+    }
+
     Box(
         modifier = modifier.fillMaxSize(),
         contentAlignment = Alignment.Center
@@ -114,7 +123,7 @@ fun ClinometerCircle(
                     .graphicsLayer { rotationZ = 180f }
             ) {
                 Text(
-                    text = "${mainAngle.toInt()}°",
+                    text = "${smartAngleDisplay(mainAngle)}°",
                     fontSize = 48.sp,
                     fontWeight = FontWeight.Bold,
                     color = if (isLeveled) Color(0xFF2E7D32) else Color(0xFFD32F2F)
