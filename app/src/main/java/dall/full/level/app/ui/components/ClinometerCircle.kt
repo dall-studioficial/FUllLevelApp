@@ -69,7 +69,10 @@ fun ClinometerCircle(
 
         // Indicador central con el valor del ángulo
         Card(
-            modifier = Modifier.offset(y = (-20).dp),
+            modifier = Modifier
+                .graphicsLayer {
+                    rotationZ = +animatedAzimuth
+                },
             colors = CardDefaults.cardColors(
                 containerColor = Color.White.copy(alpha = 0.9f)
             ),
@@ -78,21 +81,17 @@ fun ClinometerCircle(
         ) {
             Column(
                 horizontalAlignment = Alignment.CenterHorizontally,
-                modifier = Modifier.padding(16.dp)
+                modifier = Modifier
+                    .padding(16.dp)
+                    .graphicsLayer {
+                        rotationZ = 180f
+                    }
             ) {
                 Text(
                     text = "${mainAngle.toInt()}°",
-                    fontSize = 48.sp,
+                    fontSize = 58.sp,
                     fontWeight = FontWeight.Bold,
                     color = if (isLeveled) Color(0xFF2E7D32) else Color(0xFFD32F2F) // Verde oscuro o rojo oscuro
-                )
-
-                Text(
-                    text = if (isLeveled) "NIVELADO" else "INCLINADO",
-                    fontSize = 14.sp,
-                    fontWeight = FontWeight.Medium,
-                    color = if (isLeveled) Color(0xFF2E7D32) else Color(0xFFE65100), // Verde oscuro o naranja oscuro
-                    textAlign = TextAlign.Center
                 )
             }
         }
@@ -191,8 +190,15 @@ private fun DrawScope.drawClinometerCircle(
             val textColor =
                 if (isMainTick) android.graphics.Color.BLACK else android.graphics.Color.GRAY
 
-            // Para 0°, mostramos "0°", para otros ángulos el valor normal
-            val displayText = if (angle == 0f) "0°" else "${angle.toInt()}°"
+            // Mapear ángulos a rango 0-90°
+            val mappedAngle = when {
+                angle <= 90f -> angle.toInt() // 0° a 90° se mantienen igual
+                angle <= 180f -> (180 - angle).toInt() // 120°->60°, 150°->30°, 180°->0°
+                angle <= 270f -> (angle - 180).toInt() // 210°->30°, 240°->60°, 270°->90°
+                else -> (360 - angle).toInt() // 300°->60°, 330°->30°
+            }
+
+            val displayText = "${mappedAngle}°"
 
             drawContext.canvas.nativeCanvas.drawText(
                 displayText,
