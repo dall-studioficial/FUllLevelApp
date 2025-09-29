@@ -2,6 +2,7 @@ package dall.full.level.app.ui.screens
 
 import androidx.compose.foundation.BorderStroke
 import androidx.compose.foundation.clickable
+import androidx.compose.foundation.isSystemInDarkTheme
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.icons.Icons
@@ -144,6 +145,12 @@ fun SettingsScreen(
                 }
             }
             Spacer(Modifier.height(30.dp))
+            val systemIsDark = isSystemInDarkTheme()
+            val oledEnabled = when (selectedMode) {
+                "dark" -> true
+                "auto" -> systemIsDark
+                else -> false
+            }
             Row(
                 modifier = Modifier.fillMaxWidth(),
                 verticalAlignment = Alignment.CenterVertically
@@ -154,14 +161,14 @@ fun SettingsScreen(
                 Switch(
                     checked = oledModeEnabled,
                     onCheckedChange = {
-                        if (selectedMode == "dark") viewModel.setOledMode(it)
+                        if (oledEnabled) viewModel.setOledMode(it)
                     },
-                    enabled = selectedMode == "dark"
+                    enabled = oledEnabled
                 )
             }
-            if (selectedMode != "dark") {
+            if (!oledEnabled) {
                 Text(
-                    "Solo disponible en Oscuro",
+                    "Solo disponible en Modo Oscuro",
                     style = MaterialTheme.typography.bodySmall,
                     color = MaterialTheme.colorScheme.onSurface.copy(alpha = 0.5f),
                     modifier = Modifier.padding(start = 36.dp, top = 2.dp)
