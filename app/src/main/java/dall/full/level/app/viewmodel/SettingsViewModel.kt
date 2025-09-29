@@ -18,12 +18,16 @@ private val Context.dataStore by preferencesDataStore(name = SETTINGS_PREFS)
 class SettingsViewModel(application: Application) : AndroidViewModel(application) {
     private val darkThemeKey = booleanPreferencesKey("dark_theme")
     private val oledModeKey = booleanPreferencesKey("oled_mode")
+    private val followSystemThemeKey = booleanPreferencesKey("follow_system_theme")
 
     private val _darkTheme = MutableStateFlow(false)
     val darkTheme: StateFlow<Boolean> = _darkTheme.asStateFlow()
 
     private val _oledMode = MutableStateFlow(false)
     val oledMode: StateFlow<Boolean> = _oledMode.asStateFlow()
+
+    private val _followSystemTheme = MutableStateFlow(false)
+    val followSystemTheme: StateFlow<Boolean> = _followSystemTheme.asStateFlow()
 
     init {
         viewModelScope.launch {
@@ -37,19 +41,30 @@ class SettingsViewModel(application: Application) : AndroidViewModel(application
     private suspend fun loadPreferences() {
         getApplication<Application>().dataStore.data
             .map { prefs: Preferences ->
-                Pair(prefs[darkThemeKey] ?: false, prefs[oledModeKey] ?: false)
+                Triple(
+                    prefs[darkThemeKey] ?: false,
+                    prefs[oledModeKey] ?: false,
+                    prefs[followSystemThemeKey] ?: false
+                )
             }
-            .collect { pair: Pair<Boolean, Boolean> ->
-                _darkTheme.value = pair.first
-                _oledMode.value = pair.second
+            .collect { triple: Triple<Boolean, Boolean, Boolean> ->
+                _darkTheme.value = triple.first
+                _oledMode.value = triple.second
+                _followSystemTheme.value = triple.third
             }
     }
 
-    fun setDarkTheme(enabled: Boolean) {
-        _darkTheme.value = enabled
+    enum class ThemeMode { AUTO, LIGHT, DARK }
+
+    fun setThemeMode(mode: ThemeMode) {
+        val followSystemTheme = mode == ThemeMode.AUTO
+        val darkTheme = mode == ThemeMode.DARK
+        _followSystemTheme.value = followSystemTheme
+        _darkTheme.value = darkTheme
         viewModelScope.launch {
             getApplication<Application>().dataStore.edit { prefs ->
-                prefs[darkThemeKey] = enabled
+                prefs[followSystemThemeKey] = followSystemTheme
+                prefs[darkThemeKey] = darkTheme
             }
         }
     }

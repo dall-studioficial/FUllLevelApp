@@ -5,10 +5,10 @@ import android.os.Build
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.activity.enableEdgeToEdge
+import androidx.compose.foundation.isSystemInDarkTheme
 import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.SideEffect
-import androidx.compose.ui.graphics.toArgb
 import androidx.core.view.WindowCompat
 import androidx.core.view.WindowInsetsControllerCompat
 import androidx.lifecycle.viewmodel.compose.viewModel
@@ -29,8 +29,11 @@ class MainActivity : ComponentActivity() {
             val settingsVM: SettingsViewModel = viewModel(
                 factory = androidx.lifecycle.ViewModelProvider.AndroidViewModelFactory(application)
             )
-            val darkTheme by settingsVM.darkTheme.collectAsState()
+            val followSystemTheme by settingsVM.followSystemTheme.collectAsState()
+            val darkThemeByUser by settingsVM.darkTheme.collectAsState()
             val oledMode by settingsVM.oledMode.collectAsState()
+            // Aplico lógica según prefiero automático/manual
+            val darkTheme = if (followSystemTheme) isSystemInDarkTheme() else darkThemeByUser
             FUllLevelTheme(darkTheme = darkTheme, oledMode = oledMode) {
                 val navController = rememberNavController()
                 // Asegura iconos claros u oscuros en barra de status segun tema

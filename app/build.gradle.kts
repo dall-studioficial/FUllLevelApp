@@ -66,6 +66,9 @@ dependencies {
     // DataStore Preferences para guardar modo oscuro y OLED
     implementation("androidx.datastore:datastore-preferences:1.0.0")
 
+    // Iconos extendidos Material para Compose
+    implementation("androidx.compose.material:material-icons-extended:1.7.0")
+
     testImplementation(libs.junit)
     androidTestImplementation(libs.androidx.junit)
     androidTestImplementation(libs.androidx.espresso.core)

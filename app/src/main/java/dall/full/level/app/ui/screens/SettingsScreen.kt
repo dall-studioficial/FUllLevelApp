@@ -1,8 +1,15 @@
 package dall.full.level.app.ui.screens
 
+import androidx.compose.foundation.BorderStroke
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.*
+import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.ArrowBack
+import androidx.compose.material.icons.filled.Brightness4
+import androidx.compose.material.icons.filled.Settings
+import androidx.compose.material.icons.filled.Tonality
+import androidx.compose.material.icons.filled.WbSunny
 import androidx.compose.material3.*
 import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment
@@ -19,6 +26,14 @@ fun SettingsScreen(
 ) {
     val darkThemeEnabled by viewModel.darkTheme.collectAsState()
     val oledModeEnabled by viewModel.oledMode.collectAsState()
+    val followSystemTheme by viewModel.followSystemTheme.collectAsState()
+
+    // Estado combinado para selección
+    val selectedMode = when {
+        followSystemTheme -> "auto"
+        darkThemeEnabled -> "dark"
+        else -> "light"
+    }
 
     Scaffold(
         topBar = {
@@ -26,7 +41,7 @@ fun SettingsScreen(
                 title = { Text("Ajustes", fontSize = 22.sp) },
                 navigationIcon = {
                     IconButton(onClick = onBack) {
-                        Icon(Icons.Filled.ArrowBack, contentDescription = "Atrás")
+                        Icon(Icons.Default.ArrowBack, contentDescription = "Atrás")
                     }
                 }
             )
@@ -40,38 +55,118 @@ fun SettingsScreen(
             verticalArrangement = Arrangement.spacedBy(32.dp),
             horizontalAlignment = Alignment.Start
         ) {
-            Text("Personaliza tu experiencia visual", style = MaterialTheme.typography.titleMedium)
-
+            Text("Apariencia", style = MaterialTheme.typography.titleLarge)
             Row(
                 modifier = Modifier.fillMaxWidth(),
-                verticalAlignment = Alignment.CenterVertically
+                horizontalArrangement = Arrangement.spacedBy(16.dp)
             ) {
-                Text("Activar modo oscuro", modifier = Modifier.weight(1f))
-                Switch(
-                    checked = darkThemeEnabled,
-                    onCheckedChange = viewModel::setDarkTheme
-                )
+                // Automático
+                Card(
+                    modifier = Modifier
+                        .weight(1f)
+                        .clickable {
+                            viewModel.setThemeMode(SettingsViewModel.ThemeMode.AUTO)
+                        },
+                    shape = RoundedCornerShape(16.dp),
+                    border = if (selectedMode == "auto") BorderStroke(
+                        2.dp,
+                        MaterialTheme.colorScheme.primary
+                    ) else null
+                ) {
+                    Column(
+                        modifier = Modifier.padding(18.dp),
+                        horizontalAlignment = Alignment.CenterHorizontally
+                    ) {
+                        Icon(
+                            Icons.Filled.Settings,
+                            contentDescription = null,
+                            modifier = Modifier.size(40.dp)
+                        )
+                        Text("Automático", fontSize = 16.sp)
+                        if (selectedMode == "auto") Text(
+                            "Seleccionado",
+                            color = MaterialTheme.colorScheme.primary,
+                            fontSize = 12.sp
+                        )
+                    }
+                }
+                // Claro
+                Card(
+                    modifier = Modifier
+                        .weight(1f)
+                        .clickable {
+                            viewModel.setThemeMode(SettingsViewModel.ThemeMode.LIGHT)
+                        },
+                    shape = RoundedCornerShape(16.dp),
+                    border = if (selectedMode == "light") BorderStroke(
+                        2.dp,
+                        MaterialTheme.colorScheme.primary
+                    ) else null
+                ) {
+                    Column(
+                        modifier = Modifier.padding(18.dp),
+                        horizontalAlignment = Alignment.CenterHorizontally
+                    ) {
+                        Icon(
+                            Icons.Filled.WbSunny,
+                            contentDescription = null,
+                            modifier = Modifier.size(40.dp)
+                        )
+                        Text("Claro", fontSize = 16.sp)
+                        if (selectedMode == "light") Text(
+                            "Seleccionado",
+                            color = MaterialTheme.colorScheme.primary,
+                            fontSize = 12.sp
+                        )
+                    }
+                }
+                // Oscuro
+                Card(
+                    modifier = Modifier
+                        .weight(1f)
+                        .clickable {
+                            viewModel.setThemeMode(SettingsViewModel.ThemeMode.DARK)
+                        },
+                    shape = RoundedCornerShape(16.dp),
+                    border = if (selectedMode == "dark") BorderStroke(
+                        2.dp,
+                        MaterialTheme.colorScheme.primary
+                    ) else null
+                ) {
+                    Column(
+                        modifier = Modifier.padding(18.dp),
+                        horizontalAlignment = Alignment.CenterHorizontally
+                    ) {
+                        Icon(Icons.Filled.Brightness4, contentDescription = null, modifier = Modifier.size(40.dp))
+                        Text("Oscuro", fontSize = 16.sp)
+                        if (selectedMode == "dark") Text("Seleccionado", color = MaterialTheme.colorScheme.primary, fontSize = 12.sp)
+                    }
+                }
             }
+            Spacer(Modifier.height(30.dp))
             Row(
                 modifier = Modifier.fillMaxWidth(),
                 verticalAlignment = Alignment.CenterVertically
             ) {
+                Icon(Icons.Filled.Tonality, contentDescription = null)
+                Spacer(Modifier.width(16.dp))
                 Text("Modo OLED (fondo negro absoluto)", modifier = Modifier.weight(1f))
                 Switch(
                     checked = oledModeEnabled,
-                    onCheckedChange = { if (darkThemeEnabled) viewModel.setOledMode(it) },
-                    enabled = darkThemeEnabled
+                    onCheckedChange = {
+                        if (selectedMode == "dark") viewModel.setOledMode(it)
+                    },
+                    enabled = selectedMode == "dark"
                 )
             }
-            if (!darkThemeEnabled) {
+            if (selectedMode != "dark") {
                 Text(
-                    "Solo disponible en Tema Oscuro",
+                    "Solo disponible en Oscuro",
                     style = MaterialTheme.typography.bodySmall,
                     color = MaterialTheme.colorScheme.onSurface.copy(alpha = 0.5f),
-                    modifier = Modifier.padding(start = 12.dp, top = 0.dp)
+                    modifier = Modifier.padding(start = 36.dp, top = 2.dp)
                 )
             }
-            // Aquí puedes añadir más funciones visuales escalables
         }
     }
 }
