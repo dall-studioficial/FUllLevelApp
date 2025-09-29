@@ -60,6 +60,9 @@ dependencies {
     // Para animaciones suaves en Compose
     implementation("androidx.compose.animation:animation:1.7.4")
 
+    // Navegación Compose
+    implementation("androidx.navigation:navigation-compose:2.7.6")
+
     testImplementation(libs.junit)
     androidTestImplementation(libs.androidx.junit)
     androidTestImplementation(libs.androidx.espresso.core)

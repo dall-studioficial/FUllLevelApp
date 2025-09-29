@@ -1,14 +1,14 @@
 package dall.full.level.app.ui.screens
 
-import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.shape.RoundedCornerShape
+import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.filled.Info
+import androidx.compose.material.icons.filled.Settings
 import androidx.compose.material3.*
 import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.graphics.Brush
-import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
@@ -25,7 +25,10 @@ import dall.full.level.app.viewmodel.ClinometerViewModel
  */
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
-fun ClinometerScreen() {
+fun ClinometerScreen(
+    onInfoClick: () -> Unit = {},
+    onSettingsClick: () -> Unit = {}
+) {
     val context = LocalContext.current
 
     // Crear el repositorio y ViewModel
@@ -38,90 +41,81 @@ fun ClinometerScreen() {
     val errorMessage by viewModel.errorMessage.collectAsStateWithLifecycle()
     val isRotatedReference by viewModel.isRotatedReference.collectAsStateWithLifecycle()
 
-    Box(
-        modifier = Modifier
-            .fillMaxSize()
-            .background(
-                brush = Brush.verticalGradient(
-                    colors = listOf(
-                        Color(0xFF1A1A1A),
-                        Color(0xFF2D2D2D)
-                    )
-                )
-            )
-    ) {
-        Column(
-            modifier = Modifier
-                .padding(16.dp)
-                .fillMaxSize(),
-            horizontalAlignment = Alignment.CenterHorizontally
-        ) {
-            // Barra superior con título y estado
+    Scaffold(
+        topBar = {
             TopAppBar(
                 title = {
                     Text(
                         "Clinómetro",
-                        color = Color.White,
                         fontSize = 24.sp,
                         fontWeight = FontWeight.Bold
                     )
                 },
-                colors = TopAppBarDefaults.topAppBarColors(
-                    containerColor = Color.Transparent
-                ),
                 actions = {
-                    // Indicador de estado
-                    Card(
-                        colors = CardDefaults.cardColors(
-                            containerColor = if (clinometerData.isCalibrated)
-                                Color(0xFF4CAF50) else Color(0xFFFF9800)
-                        ),
-                        shape = RoundedCornerShape(12.dp)
-                    ) {
-                        Text(
-                            text = if (clinometerData.isCalibrated) "CALIBRADO" else "CALIBRANDO...",
-                            modifier = Modifier.padding(horizontal = 12.dp, vertical = 6.dp),
-                            color = Color.White,
-                            fontSize = 12.sp,
-                            fontWeight = FontWeight.Medium
+                    IconButton(onClick = onSettingsClick) {
+                        Icon(
+                            imageVector = Icons.Filled.Settings,
+                            contentDescription = "Ajustes"
                         )
                     }
-                    Spacer(modifier = Modifier.width(12.dp))
-                    // Botón para girar la referencia 0°/90°
-                    Button(
-                        onClick = { viewModel.toggleReferenceMode() },
-                        colors = ButtonDefaults.buttonColors(containerColor = Color.White.copy(alpha = 0.10f)),
-                        contentPadding = PaddingValues(horizontal = 10.dp, vertical = 4.dp)
-                    ) {
-                        Text(
-                            text = if (isRotatedReference) "90° arriba" else "0° arriba",
-                            color = Color.White,
-                            fontSize = 12.sp
+                    IconButton(onClick = onInfoClick) {
+                        Icon(
+                            imageVector = Icons.Filled.Info,
+                            contentDescription = "Info"
                         )
                     }
                 }
             )
-
-            Spacer(modifier = Modifier.height(32.dp))
-
-            // Manejo de errores
-            if (isError) {
-                ErrorCard(
-                    message = errorMessage,
-                    onRetry = { viewModel.resetSensors() }
-                )
-            } else {
-                // Componente principal del clinómetro
-                ClinometerCircle(
-                    clinometerData = clinometerData,
-                    modifier = Modifier
-                        .weight(1f)
-                        .fillMaxWidth(),
-                    isRotatedReference = isRotatedReference
-                )
+        },
+        content = { padding ->
+            Column(
+                modifier = Modifier
+                    .fillMaxSize()
+                    .padding(padding)
+                    .padding(16.dp),
+                horizontalAlignment = Alignment.CenterHorizontally
+            ) {
+                // Indicador de estado movido aquí
+                Card(
+                    shape = RoundedCornerShape(12.dp)
+                ) {
+                    Text(
+                        text = if (clinometerData.isCalibrated) "CALIBRADO" else "CALIBRANDO...",
+                        modifier = Modifier.padding(horizontal = 12.dp, vertical = 6.dp),
+                        fontSize = 12.sp,
+                        fontWeight = FontWeight.Medium
+                    )
+                }
+                Spacer(modifier = Modifier.height(12.dp))
+                Button(
+                    onClick = { viewModel.toggleReferenceMode() },
+                    contentPadding = PaddingValues(horizontal = 10.dp, vertical = 4.dp)
+                ) {
+                    Text(
+                        text = if (isRotatedReference) "90° arriba" else "0° arriba",
+                        fontSize = 12.sp
+                    )
+                }
+                Spacer(modifier = Modifier.height(24.dp))
+                // Manejo de errores
+                if (isError) {
+                    ErrorCard(
+                        message = errorMessage,
+                        onRetry = { viewModel.resetSensors() }
+                    )
+                } else {
+                    // Componente principal del clinómetro
+                    ClinometerCircle(
+                        clinometerData = clinometerData,
+                        modifier = Modifier
+                            .weight(1f)
+                            .fillMaxWidth(),
+                        isRotatedReference = isRotatedReference
+                    )
+                }
             }
         }
-    }
+    )
 }
 
 /**
@@ -136,9 +130,6 @@ private fun ErrorCard(
         modifier = Modifier
             .fillMaxWidth()
             .padding(16.dp),
-        colors = CardDefaults.cardColors(
-            containerColor = Color(0xFFD32F2F)
-        ),
         shape = RoundedCornerShape(16.dp)
     ) {
         Column(
@@ -148,8 +139,7 @@ private fun ErrorCard(
             Text(
                 text = "Error",
                 fontSize = 20.sp,
-                fontWeight = FontWeight.Bold,
-                color = Color.White
+                fontWeight = FontWeight.Bold
             )
 
             Spacer(modifier = Modifier.height(8.dp))
@@ -157,21 +147,16 @@ private fun ErrorCard(
             Text(
                 text = message,
                 fontSize = 14.sp,
-                color = Color.White,
                 textAlign = TextAlign.Center
             )
 
             Spacer(modifier = Modifier.height(16.dp))
 
             Button(
-                onClick = onRetry,
-                colors = ButtonDefaults.buttonColors(
-                    containerColor = Color.White
-                )
+                onClick = onRetry
             ) {
                 Text(
-                    text = "Reintentar",
-                    color = Color(0xFFD32F2F)
+                    text = "Reintentar"
                 )
             }
         }

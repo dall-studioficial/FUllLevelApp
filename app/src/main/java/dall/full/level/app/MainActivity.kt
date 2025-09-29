@@ -4,8 +4,9 @@ import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.activity.enableEdgeToEdge
-import dall.full.level.app.ui.screens.ClinometerScreen
+import androidx.navigation.compose.rememberNavController
 import dall.full.level.app.ui.theme.FUllLevelTheme
+import dall.full.level.app.ui.navigation.AppNavHost
 
 /**
  * Activity principal que contiene la aplicación de clinómetro
@@ -17,7 +18,8 @@ class MainActivity : ComponentActivity() {
         enableEdgeToEdge()
         setContent {
             FUllLevelTheme {
-                ClinometerScreen()
+                val navController = rememberNavController()
+                AppNavHost(navController)
             }
         }
     }
