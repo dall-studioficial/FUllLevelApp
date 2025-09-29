@@ -9,14 +9,16 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import dall.full.level.app.viewmodel.SettingsViewModel
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun SettingsScreen(
+    viewModel: SettingsViewModel,
     onBack: () -> Unit
 ) {
-    var darkModeEnabled by remember { mutableStateOf(false) }
-    var oledModeEnabled by remember { mutableStateOf(false) }
+    val darkThemeEnabled by viewModel.darkTheme.collectAsState()
+    val oledModeEnabled by viewModel.oledMode.collectAsState()
 
     Scaffold(
         topBar = {
@@ -46,8 +48,8 @@ fun SettingsScreen(
             ) {
                 Text("Activar modo oscuro", modifier = Modifier.weight(1f))
                 Switch(
-                    checked = darkModeEnabled,
-                    onCheckedChange = { darkModeEnabled = it }
+                    checked = darkThemeEnabled,
+                    onCheckedChange = viewModel::setDarkTheme
                 )
             }
             Row(
@@ -57,7 +59,16 @@ fun SettingsScreen(
                 Text("Modo OLED (fondo negro absoluto)", modifier = Modifier.weight(1f))
                 Switch(
                     checked = oledModeEnabled,
-                    onCheckedChange = { oledModeEnabled = it }
+                    onCheckedChange = { if (darkThemeEnabled) viewModel.setOledMode(it) },
+                    enabled = darkThemeEnabled
+                )
+            }
+            if (!darkThemeEnabled) {
+                Text(
+                    "Solo disponible en Tema Oscuro",
+                    style = MaterialTheme.typography.bodySmall,
+                    color = MaterialTheme.colorScheme.onSurface.copy(alpha = 0.5f),
+                    modifier = Modifier.padding(start = 12.dp, top = 0.dp)
                 )
             }
             // Aquí puedes añadir más funciones visuales escalables

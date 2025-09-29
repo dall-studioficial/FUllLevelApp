@@ -9,9 +9,10 @@ import dall.full.level.app.ui.screens.ClinometerScreen
 import dall.full.level.app.ui.screens.InfoScreen
 import dall.full.level.app.ui.screens.SettingsScreen
 import dall.full.level.app.viewmodel.InfoViewModel
+import dall.full.level.app.viewmodel.SettingsViewModel
 
 @Composable
-fun AppNavHost(navController: NavHostController) {
+fun AppNavHost(navController: NavHostController, settingsVM: SettingsViewModel) {
     NavHost(navController = navController, startDestination = Destinations.CLINOMETER) {
         composable(Destinations.CLINOMETER) {
             ClinometerScreen(
@@ -32,6 +33,7 @@ fun AppNavHost(navController: NavHostController) {
         }
         composable(Destinations.SETTINGS) {
             SettingsScreen(
+                viewModel = settingsVM,
                 onBack = { navController.popBackStack() }
             )
         }

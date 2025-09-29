@@ -5,6 +5,7 @@ import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.darkColorScheme
 import androidx.compose.material3.lightColorScheme
 import androidx.compose.runtime.Composable
+import androidx.compose.ui.graphics.Color
 
 private val lightScheme = lightColorScheme(
     primary = primaryLight,
@@ -86,9 +87,12 @@ private val darkScheme = darkColorScheme(
 @Composable
 fun FUllLevelTheme(
     darkTheme: Boolean = isSystemInDarkTheme(),
+    oledMode: Boolean = false,
     content: @Composable() () -> Unit
 ) {
+    val useOled = darkTheme && oledMode
     val colorScheme = when {
+        useOled -> darkScheme.copy(background = Color.Black, surface = Color.Black)
         darkTheme -> darkScheme
         else -> lightScheme
     }

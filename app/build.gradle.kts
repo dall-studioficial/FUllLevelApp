@@ -63,6 +63,9 @@ dependencies {
     // Navegación Compose
     implementation("androidx.navigation:navigation-compose:2.7.6")
 
+    // DataStore Preferences para guardar modo oscuro y OLED
+    implementation("androidx.datastore:datastore-preferences:1.0.0")
+
     testImplementation(libs.junit)
     androidTestImplementation(libs.androidx.junit)
     androidTestImplementation(libs.androidx.espresso.core)
