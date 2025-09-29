@@ -9,6 +9,8 @@ import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.flow.catch
 import kotlinx.coroutines.launch
+import kotlin.math.abs
+import kotlin.math.tan
 
 /**
  * ViewModel para el clinómetro que maneja la lógica de presentación
@@ -30,6 +32,9 @@ class ClinometerViewModel(
     // Nuevo estado: indica si la referencia está girada (0°=vertical o 90°=vertical)
     private val _isRotatedReference = MutableStateFlow(false)
     val isRotatedReference: StateFlow<Boolean> = _isRotatedReference.asStateFlow()
+
+    private val _showPitch = MutableStateFlow(false)
+    val showPitch: StateFlow<Boolean> = _showPitch.asStateFlow()
 
     init {
         startSensorMonitoring()
@@ -56,7 +61,10 @@ class ClinometerViewModel(
                         clinometerData.pitchAngle,
                         _isRotatedReference.value
                     )
-                    _clinometerState.value = clinometerData.copy(pitchAngle = mappedPitch)
+                    val showPitchMode = _showPitch.value
+                    val pitchValue =
+                        if (showPitchMode) mapAngleToPitch(mappedPitch) else mappedPitch
+                    _clinometerState.value = clinometerData.copy(pitchAngle = pitchValue)
                     _isError.value = false
                 }
         }
@@ -93,7 +101,17 @@ class ClinometerViewModel(
     private fun applyReferenceMode() {
         val current = _clinometerState.value
         val mappedPitch = mapAngleToTransportador(current.pitchAngle, _isRotatedReference.value)
-        _clinometerState.value = current.copy(pitchAngle = mappedPitch)
+        val pitchValue = if (_showPitch.value) mapAngleToPitch(mappedPitch) else mappedPitch
+        _clinometerState.value = current.copy(pitchAngle = pitchValue)
+    }
+
+    fun toggleShowPitch() {
+        _showPitch.value = !_showPitch.value
+        applyReferenceMode()
+    }
+
+    private fun mapAngleToPitch(angle: Float): Float {
+        return (12 * tan(Math.toRadians(angle.toDouble()))).toFloat()
     }
 
 }

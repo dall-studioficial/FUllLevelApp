@@ -30,6 +30,9 @@ import androidx.compose.ui.unit.sp
 import dall.full.level.app.R
 import dall.full.level.app.data.ClinometerData
 import kotlin.math.abs
+import kotlin.math.tan
+import java.lang.Math.toRadians
+import kotlin.math.roundToInt
 
 /**
  * Componente circular del clinómetro que muestra la inclinación de forma visual
@@ -38,7 +41,8 @@ import kotlin.math.abs
 fun ClinometerCircle(
     clinometerData: ClinometerData,
     modifier: Modifier = Modifier,
-    isRotatedReference: Boolean = false
+    isRotatedReference: Boolean = false,
+    showPitch: Boolean = false
 ) {
     val animatedPitch by animateFloatAsState(
         targetValue = clinometerData.pitchAngle, // Usamos Pitch para rotación del teléfono
@@ -122,12 +126,29 @@ fun ClinometerCircle(
                     .padding(start = 35.dp, top = 10.dp, end = 35.dp, bottom = 10.dp)
                     .graphicsLayer { rotationZ = 180f }
             ) {
-                Text(
-                    text = "${smartAngleDisplay(mainAngle)}°",
-                    fontSize = 48.sp,
-                    fontWeight = FontWeight.Bold,
-                    color = if (isLeveled) Color(0xFF2E7D32) else Color(0xFFD32F2F)
-                )
+
+                if (showPitch) {
+                    // Si el ángulo es prácticamente vertical, muestra infinito
+                    val toShow = if (mainAngle >= 89.5f) { // Usamos el ángulo en grados para el chequeo de infinito
+                        "Infinito/12"
+                    } else {
+                        // Aquí usamos directamente el valor del pitch que ya viene calculado
+                        "${mainAngle.roundToInt()}/12"
+                    }
+                    Text(
+                        text = toShow,
+                        fontSize = 48.sp,
+                        fontWeight = FontWeight.Bold,
+                        color = if (isLeveled) Color(0xFF2E7D32) else Color(0xFFD32F2F)
+                    )
+                } else {
+                    Text(
+                        text = "${smartAngleDisplay(mainAngle)}°",
+                        fontSize = 48.sp,
+                        fontWeight = FontWeight.Bold,
+                        color = if (isLeveled) Color(0xFF2E7D32) else Color(0xFFD32F2F)
+                    )
+                }
             }
         }
     }

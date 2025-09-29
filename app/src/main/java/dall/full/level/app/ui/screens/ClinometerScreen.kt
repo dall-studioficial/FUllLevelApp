@@ -4,7 +4,9 @@ import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Info
+import androidx.compose.material.icons.filled.Roofing
 import androidx.compose.material.icons.filled.Settings
+import androidx.compose.material.icons.outlined.Straighten
 import androidx.compose.material3.*
 import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment
@@ -40,6 +42,7 @@ fun ClinometerScreen(
     val isError by viewModel.isError.collectAsStateWithLifecycle()
     val errorMessage by viewModel.errorMessage.collectAsStateWithLifecycle()
     val isRotatedReference by viewModel.isRotatedReference.collectAsStateWithLifecycle()
+    val showPitch by viewModel.showPitch.collectAsState()
 
     Scaffold(
         topBar = {
@@ -96,6 +99,26 @@ fun ClinometerScreen(
                         fontSize = 12.sp
                     )
                 }
+                // Tabs para alternar Grados/Pitch
+                val tabTitles = listOf("Grados", "Pitch (X/12)")
+                val tabIcons = listOf(Icons.Outlined.Straighten, Icons.Filled.Roofing)
+                val selectedTabIndex = if (showPitch) 1 else 0
+
+                Spacer(modifier = Modifier.height(8.dp))
+                TabRow(selectedTabIndex = selectedTabIndex) {
+                    tabTitles.forEachIndexed { index, title ->
+                        Tab(
+                            selected = selectedTabIndex == index,
+                            onClick = {
+                                if (selectedTabIndex != index) {
+                                    viewModel.toggleShowPitch()
+                                }
+                            },
+                            text = { Text(text = title, fontSize = 14.sp) },
+                            icon = { Icon(imageVector = tabIcons[index], contentDescription = title) }
+                        )
+                    }
+                }
                 Spacer(modifier = Modifier.height(24.dp))
                 // Manejo de errores
                 if (isError) {
@@ -110,7 +133,8 @@ fun ClinometerScreen(
                         modifier = Modifier
                             .weight(1f)
                             .fillMaxWidth(),
-                        isRotatedReference = isRotatedReference
+                        isRotatedReference = isRotatedReference,
+                        showPitch = showPitch
                     )
                 }
             }
