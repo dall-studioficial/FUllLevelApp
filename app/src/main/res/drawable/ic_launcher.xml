@@ -1,0 +1,25 @@
+<vector xmlns:android="http://schemas.android.com/apk/res/android"
+    android:width="108dp"
+    android:height="108dp"
+    android:viewportWidth="108"
+    android:viewportHeight="108">
+
+    <!-- Fondo círculo principal, azul Material -->
+    <path
+        android:fillColor="#2196F3"
+        android:pathData="M54,8a46,46 0 1,1 0,92a46,46 0 1,1 0,-92" />
+
+    <!-- Aguja blanca central vertical -->
+    <path
+        android:fillColor="#FFFFFF"
+        android:pathData="M54,30 L54,78"
+        android:strokeColor="#FFFFFF"
+        android:strokeWidth="8" />
+
+    <!-- Arco de nivel minimalista, verde -->
+    <path
+        android:fillColor="#4CAF50"
+        android:pathData="M34,74a20,20 0 0,1 40,0"
+        android:strokeColor="#4CAF50"
+        android:strokeWidth="6" />
+</vector>
