@@ -1,6 +1,5 @@
 package dall.full.level.app.ui.screens
 
-import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.icons.Icons
@@ -75,7 +74,7 @@ fun InfoScreen(
                 modifier = Modifier.fillMaxWidth()
             ) {
                 Column(modifier = Modifier.padding(18.dp)) {
-                    Text("Versión: 1.0.0", style = MaterialTheme.typography.bodyLarge)
+                    Text("Versión: 1.0.0  (en desarrollo)", style = MaterialTheme.typography.bodyLarge)
                     Row(verticalAlignment = Alignment.CenterVertically) {
                         Icon(Icons.Filled.AlternateEmail, contentDescription = "email")
                         Spacer(Modifier.width(8.dp))
