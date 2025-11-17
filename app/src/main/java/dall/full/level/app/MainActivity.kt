@@ -1,5 +1,6 @@
 package dall.full.level.app
 
+import android.content.pm.ActivityInfo
 import android.os.Bundle
 import android.os.Build
 import androidx.activity.ComponentActivity
@@ -24,6 +25,8 @@ import dall.full.level.app.viewmodel.SettingsViewModel
 class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        // Bloquear la rotación de la pantalla a vertical
+        requestedOrientation = ActivityInfo.SCREEN_ORIENTATION_PORTRAIT
         enableEdgeToEdge()
         setContent {
             val settingsVM: SettingsViewModel = viewModel(
