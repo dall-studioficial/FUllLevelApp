@@ -2,6 +2,8 @@ plugins {
     alias(libs.plugins.android.application)
     alias(libs.plugins.kotlin.android)
     alias(libs.plugins.kotlin.compose)
+    alias(libs.plugins.hilt)
+    alias(libs.plugins.kapt)
 }
 
 android {
@@ -46,6 +48,7 @@ android {
 
 dependencies {
 
+    implementation(libs.androidx.appcompat)
     implementation(libs.androidx.core.ktx)
     implementation(libs.androidx.lifecycle.runtime.ktx)
     implementation(libs.androidx.activity.compose)
@@ -73,6 +76,26 @@ dependencies {
 
     // Iconos extendidos Material para Compose
     implementation(libs.androidx.compose.material.icons.extended)
+
+    // Hilt para inyección de dependencias
+    implementation(libs.hilt.android)
+    kapt(libs.hilt.compiler)
+    implementation(libs.androidx.hilt.navigation.compose)
+
+    // CameraX
+    implementation(libs.androidx.camera.core)
+    implementation(libs.androidx.camera.camera2)
+    implementation(libs.androidx.camera.lifecycle)
+    implementation(libs.androidx.camera.video)
+    implementation(libs.androidx.camera.view)
+    implementation(libs.androidx.camera.extensions)
+    implementation(libs.accompanist.permissions)
+
+    // Google AdMob
+    implementation(libs.play.services.ads)
+
+    // Guava (ListenableFuture para CameraX)
+    implementation(libs.guava)
 
     testImplementation(libs.junit)
     androidTestImplementation(libs.androidx.junit)

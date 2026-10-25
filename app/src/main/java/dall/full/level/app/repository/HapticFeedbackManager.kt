@@ -5,6 +5,9 @@ import android.os.Build
 import android.os.VibrationEffect
 import android.os.Vibrator
 import android.os.VibratorManager
+import dagger.hilt.android.qualifiers.ApplicationContext
+import javax.inject.Inject
+import javax.inject.Singleton
 
 /**
  * Gestor de feedback háptico para manejar las vibraciones de la app.
@@ -12,7 +15,8 @@ import android.os.VibratorManager
  * Esta clase centraliza la lógica de vibración, facilitando su uso y mantenimiento,
  * y gestionando la compatibilidad con diferentes versiones de Android.
  */
-class HapticFeedbackManager(context: Context) {
+@Singleton
+class HapticFeedbackManager @Inject constructor(@ApplicationContext context: Context) {
 
     private val vibrator: Vibrator
 

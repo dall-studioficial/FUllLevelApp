@@ -1,13 +1,14 @@
 package dall.full.level.app.ui.navigation
 
 import androidx.compose.runtime.Composable
-import androidx.lifecycle.viewmodel.compose.viewModel
+import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import dall.full.level.app.ui.screens.ClinometerScreen
 import dall.full.level.app.ui.screens.InfoScreen
 import dall.full.level.app.ui.screens.SettingsScreen
+import dall.full.level.app.ui.screens.CameraLevelScreen
 import dall.full.level.app.viewmodel.InfoViewModel
 import dall.full.level.app.viewmodel.SettingsViewModel
 
@@ -21,11 +22,14 @@ fun AppNavHost(navController: NavHostController, settingsVM: SettingsViewModel) 
                 },
                 onSettingsClick = {
                     navController.navigate(Destinations.SETTINGS)
+                },
+                onCameraClick = {
+                    navController.navigate(Destinations.CAMERA_LEVEL)
                 }
             )
         }
         composable(Destinations.INFO) {
-            val infoViewModel: InfoViewModel = viewModel()
+            val infoViewModel: InfoViewModel = hiltViewModel()
             InfoScreen(
                 viewModel = infoViewModel,
                 onBack = { navController.popBackStack() }
@@ -34,6 +38,11 @@ fun AppNavHost(navController: NavHostController, settingsVM: SettingsViewModel) 
         composable(Destinations.SETTINGS) {
             SettingsScreen(
                 viewModel = settingsVM,
+                onBack = { navController.popBackStack() }
+            )
+        }
+        composable(Destinations.CAMERA_LEVEL) {
+            CameraLevelScreen(
                 onBack = { navController.popBackStack() }
             )
         }

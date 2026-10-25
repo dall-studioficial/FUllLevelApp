@@ -5,7 +5,10 @@ import android.hardware.Sensor
 import android.hardware.SensorEvent
 import android.hardware.SensorEventListener
 import android.hardware.SensorManager
+import dagger.hilt.android.qualifiers.ApplicationContext
 import dall.full.level.app.data.ClinometerData
+import javax.inject.Inject
+import javax.inject.Singleton
 import kotlinx.coroutines.channels.awaitClose
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.callbackFlow
@@ -15,7 +18,8 @@ import kotlin.math.atan2
  * Repositorio para manejar los sensores del dispositivo
  * Proporciona datos de inclinación mediante Flow para reactividad
  */
-class SensorRepository(context: Context) {
+@Singleton
+class SensorRepository @Inject constructor(@ApplicationContext context: Context) {
 
     private val sensorManager = context.getSystemService(Context.SENSOR_SERVICE) as SensorManager
     private val accelerometer = sensorManager.getDefaultSensor(Sensor.TYPE_ACCELEROMETER)
@@ -28,12 +32,18 @@ class SensorRepository(context: Context) {
 
     // Filtro de paso bajo para suavizar las lecturas
     private var lastFilteredPitch = 0f
+    private var isPitchFilterInitialized = false
     private val FILTER_ALPHA = 0.8f // Factor de suavizado (0.0 - 1.0)
 
     /**
      * Aplica un filtro de paso bajo para suavizar las lecturas del sensor
      */
     private fun applyLowPassFilter(newValue: Float): Float {
+        if (!isPitchFilterInitialized) {
+            lastFilteredPitch = newValue
+            isPitchFilterInitialized = true
+            return newValue
+        }
         lastFilteredPitch = FILTER_ALPHA * lastFilteredPitch + (1 - FILTER_ALPHA) * newValue
         return lastFilteredPitch
     }
@@ -96,22 +106,18 @@ class SensorRepository(context: Context) {
                             else -> rollDegrees
                         }
 
-                        // ORIENTACIÓN ABSOLUTA: Calcular hacia dónde apunta "arriba" del teléfono
-                        // usando el vector de gravedad para determinar la orientación real
-                        val upDirectionRadians = atan2(-x.toDouble(), -y.toDouble())
-                        val upDirectionDegrees = Math.toDegrees(upDirectionRadians).toFloat()
-
                         // Aplicar filtro de suavizado
                         val smoothedRoll = applyLowPassFilter(rollDegrees)
                         val calibratedRoll = calibrateAngle(smoothedRoll)
 
                         // Obtener azimut del cálculo original para la orientación absoluta
                         val roll = Math.toDegrees(orientationAngles[2].toDouble()).toFloat()
+                        val needleAngle = ((smoothedRoll + 180f) % 360f + 360f) % 360f
 
                         val clinometerData = ClinometerData(
                             pitchAngle = calibratedRoll, // Roll como ángulo principal
                             rollAngle = roll,
-                            azimuthAngle = upDirectionDegrees, // Orientación absoluta hacia arriba
+                            azimuthAngle = needleAngle,
                             isCalibrated = true
                         )
 
