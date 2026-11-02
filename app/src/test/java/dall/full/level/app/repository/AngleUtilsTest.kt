@@ -5,17 +5,27 @@ import org.junit.Test
 
 class AngleUtilsTest {
     @Test
-    fun unwrapsAcrossPositiveNinetyDegreesWithoutFlipping() {
-        assertEquals(91f, unwrapAxisAngle(-89f, 90f), 0.001f)
+    fun preservesForwardRotationPastPositiveNinetyDegrees() {
+        assertEquals(91f, unwrapAngle(91f, 90f), 0.001f)
     }
 
     @Test
-    fun unwrapsAcrossNegativeNinetyDegreesWithoutFlipping() {
-        assertEquals(-91f, unwrapAxisAngle(89f, -90f), 0.001f)
+    fun preservesReverseRotationPastNegativeNinetyDegrees() {
+        assertEquals(-91f, unwrapAngle(-91f, -90f), 0.001f)
     }
 
     @Test
-    fun keepsPortraitReferenceNearZero() {
-        assertEquals(0f, unwrapAxisAngle(180f, 0f), 0.001f)
+    fun unwrapsAcrossPositiveOneHundredEightyDegrees() {
+        assertEquals(181f, unwrapAngle(-179f, 179f), 0.001f)
+    }
+
+    @Test
+    fun unwrapsAcrossNegativeOneHundredEightyDegrees() {
+        assertEquals(-181f, unwrapAngle(179f, -179f), 0.001f)
+    }
+
+    @Test
+    fun keepsAnInitiallyInvertedPhoneAtOneHundredEightyDegrees() {
+        assertEquals(180f, unwrapAngle(180f, 0f), 0.001f)
     }
 }

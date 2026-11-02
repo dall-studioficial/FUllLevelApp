@@ -97,15 +97,14 @@ class SensorRepository @Inject constructor(@ApplicationContext context: Context)
                         val rollRadians = atan2(x.toDouble(), y.toDouble())
                         val rollDegrees = Math.toDegrees(rollRadians).toFloat()
 
-                        // El eje del teléfono se repite cada 180°; conserva la rama más cercana
-                        // para que el filtro no invierta la aguja al cruzar ±90°.
-                        val continuousRoll = unwrapAxisAngle(rollDegrees, lastFilteredPitch)
+                        // Conserva la vuelta completa para que la aguja siga el giro sin plegarse a 180°.
+                        val continuousRoll = unwrapAngle(rollDegrees, lastFilteredPitch)
                         val smoothedRoll = applyLowPassFilter(continuousRoll)
                         val calibratedRoll = calibrateAngle(smoothedRoll)
 
-                        // Obtener azimut del cálculo original para la orientación absoluta
+                        // Obtener azimut del cálculo original para la orientación absoluta.
                         val roll = Math.toDegrees(orientationAngles[2].toDouble()).toFloat()
-                        // Conserva la vuelta completa: plegar el eje a 180° invertía la aguja al pasar 90°.
+                        // Usa el mismo ángulo continuo para que la aguja acompañe el movimiento del teléfono.
                         val needleAngle = smoothedRoll
 
                         val clinometerData = ClinometerData(

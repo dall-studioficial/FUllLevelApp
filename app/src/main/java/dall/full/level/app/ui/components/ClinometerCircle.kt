@@ -90,7 +90,7 @@ fun ClinometerCircle(
                 horizontalAlignment = Alignment.CenterHorizontally,
                 modifier = Modifier
                     .padding(start = 35.dp, top = 10.dp, end = 35.dp, bottom = 10.dp)
-                    .graphicsLayer { rotationZ = 180f }
+                    .graphicsLayer { rotationZ = -normalizedAzimuth }
             ) {
                 val textColor = if (isLeveled) Color(0xFF2E7D32) else Color(0xFFD32F2F)
 

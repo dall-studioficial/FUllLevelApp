@@ -220,7 +220,7 @@ fun ClinometerDial(
                 // El pivote queda en el centro y la punta llega al 84 % del radio del dial.
                 val center = Offset(size.width / 2f, size.height / 2f)
                 val radius = min(size.width, size.height) * 0.49f
-                // La inclinación es un eje: 0° y 180° representan la misma dirección de aguja.
+                // Mantiene la vuelta completa para que la punta siga el sentido real del giro.
                 val normalizedAngle = normalizeNeedleAngle(needleAngle)
 
                 rotate(degrees = normalizedAngle, pivot = center) {
