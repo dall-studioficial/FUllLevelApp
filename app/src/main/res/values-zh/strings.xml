@@ -1,0 +1,134 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- 名称与标识 -->
+    <string name="app_name">倾角仪 Pro</string>
+    <string name="app_title">倾角仪</string>
+    <string name="app_pro_title">倾角仪 PRO</string>
+    <string name="camera_level_title">相机水平仪 PRO</string>
+    <string name="settings_title">PRO 设置</string>
+    <string name="about_title">关于应用</string>
+    <string name="about_app_name">FULL LEVEL</string>
+
+    <!-- 状态与标签 -->
+    <string name="calibrated">已校准</string>
+    <string name="calibrating">校准中&#8230;</string>
+    <string name="calibrated_pro">PRO 校准</string>
+    <string name="measuring">测量中</string>
+    <string name="leveled">已水平！</string>
+    <string name="held">已冻结</string>
+    <string name="theme_selected">已选择</string>
+
+    <!-- 单位与模式 -->
+    <string name="degrees">角度</string>
+    <string name="pitch">坡度 (X/12)</string>
+    <string name="ref_0">基准: 0°</string>
+    <string name="ref_90">基准: 90°</string>
+    <string name="infinity_pitch">无穷大 / 12</string>
+
+    <!-- 按钮与操作 -->
+    <string name="freeze">冻结</string>
+    <string name="resume">恢复</string>
+    <string name="calibrate">校准</string>
+    <string name="calibrate_zero">零点校准</string>
+    <string name="reset">重置</string>
+    <string name="cancel">取消</string>
+    <string name="camera">相机</string>
+    <string name="settings">设置</string>
+    <string name="info">信息</string>
+    <string name="back">返回</string>
+    <string name="retry">重试</string>
+    <string name="error">错误</string>
+    <string name="capture">拍照</string>
+    <string name="share">分享</string>
+    <string name="continue_measuring">继续测量</string>
+    <string name="copy">复制</string>
+    <string name="support_button">支持</string>
+
+    <!-- 相机与覆盖层 -->
+    <string name="flashlight">手电筒</string>
+    <string name="grid">网格</string>
+    <string name="change_mode">切换模式</string>
+    <string name="capture_saved_toast">照片已保存至相册！</string>
+    <string name="capture_saved_dialog_title">照片已保存！</string>
+    <string name="camera_permission_required">使用此功能需要相机权限。</string>
+    <string name="grant_permission">授予权限</string>
+    <string name="share_title">分享 PRO 测量结果</string>
+
+    <!-- 校准对话框 -->
+    <string name="calibration_mode">校准模式</string>
+    <string name="calibration_step_1">1. 将设备平放在水平面上并保持稳定。</string>
+    <string name="calibration_step_2">2. 点击“零点校准”将当前位置设为基准零点 (0.0°)。</string>
+    <string name="calibration_success_toast">成功校准至零点 (0.0°)！</string>
+    <string name="calibration_reset_toast">校准已重置</string>
+
+    <!-- 设置 -->
+    <string name="app_language_section">应用语言</string>
+    <string name="app_language_title">语言</string>
+    <string name="app_language_desc">选择界面的首选语言</string>
+    <string name="lang_auto">系统默认 (自动)</string>
+    <string name="pro_support">PRO 支持</string>
+    <string name="support_title">支持 Full Level PRO</string>
+    <string name="support_desc">观看一段短视频以支持应用开发</string>
+    <string name="support_thanks_toast">非常感谢您支持 Full Level PRO！</string>
+    <string name="theme_palette_section">M3 主题调色板</string>
+    <string name="sensor_calibration_section">传感器校准</string>
+    <string name="custom_calibration_active">自定义校准已生效</string>
+    <string name="factory_calibration">出厂默认校准</string>
+    <string name="sensor_calibration_desc">将手机平放在水平面上，点击“零点校准”以设定 0.0° 基准。</string>
+    <string name="haptic_and_audio_section">振动、音频与语音</string>
+    <string name="haptic_vibration_title">水平触感振动 (0° / 90°)</string>
+    <string name="haptic_vibration_desc">达到精准水平位置时发出轻微振动提示</string>
+    <string name="proximity_beeps_title">距离蜂鸣声 (雷达)</string>
+    <string name="proximity_beeps_desc">越接近 0°，蜂鸣声越密集</string>
+    <string name="voice_assistant_title">语音助手 (TTS)</string>
+    <string name="voice_assistant_desc">冻结屏幕时播报当前倾角</string>
+    <string name="theme_mode_section">主题模式</string>
+    <string name="theme_auto">自动</string>
+    <string name="theme_light">浅色</string>
+    <string name="theme_dark">深色</string>
+    <string name="oled_mode_title">OLED 模式</string>
+    <string name="oled_mode_desc">适用于 AMOLED 屏幕的纯黑背景</string>
+
+    <!-- 关于 -->
+    <string name="email_copied_toast">邮箱已复制！</string>
+    <string name="share_contact">分享联系方式</string>
+    <string name="contact_subject">Full Level 联系反馈</string>
+    <string name="contact_body">您好，我想联系 Alexander Lopez (Dall Studio) - dall.studioficial@gmail.com</string>
+    <string name="share_contact_title">分享联系人信息</string>
+
+    <!-- TTS 与传感器 -->
+    <string name="sensors_not_available">此设备不支持所需的传感器。</string>
+
+    <!-- 主题调色板 -->
+    <string name="theme_green">绿色森林</string>
+    <string name="theme_blue">海洋蓝</string>
+    <string name="theme_orange">火焰橙</string>
+    <string name="theme_purple">帝王紫</string>
+    <string name="theme_red">红宝石</string>
+    <string name="theme_gold">琥珀金</string>
+    <string name="theme_dynamic">Material You</string>
+
+    <!-- 首次使用指南 -->
+    <string name="guide_brand">FULL LEVEL • 快速指南</string>
+    <string name="guide_step_counter">第 %1$d 步，共 %2$d 步</string>
+    <string name="guide_skip">跳过</string>
+    <string name="guide_next">继续</string>
+    <string name="guide_start">开始测量</string>
+    <string name="guide_live_reading">实时读数</string>
+    <string name="guide_mini_dial">观察迷你刻度盘指针的移动</string>
+    <string name="guide_welcome_title">欢迎使用 Full Level</string>
+    <string name="guide_welcome_body">精准测量坡度、校准表面，让您的工作更得心应手。</string>
+    <string name="guide_level_title">查看每一次变化</string>
+    <string name="guide_level_body">缓慢倾斜手机，观察迷你刻度盘指针的移动，并与实时读数进行对照。保持设备稳定，测量结果会更可靠。</string>
+    <string name="guide_modes_title">选择测量方式</string>
+    <string name="guide_modes_body">角度模式显示倾斜角度。Pitch 模式以每 12 个水平距离单位对应的垂直高度表示坡度。</string>
+    <string name="guide_reference_title">设置测量基准</string>
+    <string name="guide_reference_body">根据水平或垂直测量需要，在 0° 和 90° 基准之间切换。若要提高精度，请在已知水平的表面上校准。</string>
+    <string name="guide_tools_title">轻松查看测量结果</string>
+    <string name="guide_tools_body">冻结读数以便查看，或打开相机，使用实时水平叠加辅助校准表面。</string>
+    <string name="guide_ready_title">现在可以开始了</string>
+    <string name="guide_ready_body">入门所需内容已介绍完毕。您可以随时在设置中重新打开本指南。</string>
+    <string name="guide_settings_section">入门指南</string>
+    <string name="guide_settings_title">应用使用指南</string>
+    <string name="guide_settings_desc">了解主要工具和测量方法</string>
+</resources>

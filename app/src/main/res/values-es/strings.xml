@@ -1,0 +1,134 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- Nombre e Identificación -->
+    <string name="app_name">Clinómetro Pro</string>
+    <string name="app_title">Clinómetro</string>
+    <string name="app_pro_title">Clinómetro PRO</string>
+    <string name="camera_level_title">Nivel PRO con Cámara</string>
+    <string name="settings_title">Ajustes PRO</string>
+    <string name="about_title">Sobre la App</string>
+    <string name="about_app_name">FULL LEVEL</string>
+
+    <!-- Estados y Badges -->
+    <string name="calibrated">CALIBRADO</string>
+    <string name="calibrating">CALIBRANDO&#8230;</string>
+    <string name="calibrated_pro">CALIBRACIÓN PRO</string>
+    <string name="measuring">MIDIENDO</string>
+    <string name="leveled">¡NIVELADO!</string>
+    <string name="held">CONGELADO</string>
+    <string name="theme_selected">Seleccionado</string>
+
+    <!-- Unidades y Modos -->
+    <string name="degrees">Grados</string>
+    <string name="pitch">Pitch (X/12)</string>
+    <string name="ref_0">Ref: 0°</string>
+    <string name="ref_90">Ref: 90°</string>
+    <string name="infinity_pitch">Infinito / 12</string>
+
+    <!-- Botones y Acciones -->
+    <string name="freeze">Congelar</string>
+    <string name="resume">Reanudar</string>
+    <string name="calibrate">CALIBRAR</string>
+    <string name="calibrate_zero">Calibrar Cero</string>
+    <string name="reset">Restablecer</string>
+    <string name="cancel">Cancelar</string>
+    <string name="camera">Cámara</string>
+    <string name="settings">Ajustes</string>
+    <string name="info">Info</string>
+    <string name="back">Atrás</string>
+    <string name="retry">Reintentar</string>
+    <string name="error">Error</string>
+    <string name="capture">Capturar</string>
+    <string name="share">Compartir</string>
+    <string name="continue_measuring">Continuar Midiendo</string>
+    <string name="copy">Copiar</string>
+    <string name="support_button">Apoyar</string>
+
+    <!-- Cámara y Capturas -->
+    <string name="flashlight">Linterna</string>
+    <string name="grid">Cuadrícula</string>
+    <string name="change_mode">Cambiar Modo</string>
+    <string name="capture_saved_toast">¡Captura guardada en Galería!</string>
+    <string name="capture_saved_dialog_title">¡Captura Guardada!</string>
+    <string name="camera_permission_required">Se requiere permiso de cámara para usar esta herramienta.</string>
+    <string name="grant_permission">Otorgar Permiso</string>
+    <string name="share_title">Compartir Medición PRO</string>
+
+    <!-- Diálogo de Calibración -->
+    <string name="calibration_mode">Modo Calibración</string>
+    <string name="calibration_step_1">1. Coloca el dispositivo apoyado sobre una superficie nivelada y manténlo firme.</string>
+    <string name="calibration_step_2">2. Presiona \'Calibrar Cero\' para ajustar esta posición como el punto Cero (0.0°).</string>
+    <string name="calibration_success_toast">¡Calibrado a Cero (0.0°) con éxito!</string>
+    <string name="calibration_reset_toast">Calibración restablecida</string>
+
+    <!-- Ajustes -->
+    <string name="app_language_section">Idioma de la Aplicación</string>
+    <string name="app_language_title">Idioma</string>
+    <string name="app_language_desc">Selecciona el idioma preferido para la interfaz</string>
+    <string name="lang_auto">Idioma del Sistema (Auto)</string>
+    <string name="pro_support">Soporte PRO</string>
+    <string name="support_title">Apoyar Full Level PRO</string>
+    <string name="support_desc">Mira un video corto para apoyar el desarrollo de la aplicación</string>
+    <string name="support_thanks_toast">¡Muchas gracias por apoyar Full Level PRO!</string>
+    <string name="theme_palette_section">Paleta de Tema M3</string>
+    <string name="sensor_calibration_section">Calibración de Sensores</string>
+    <string name="custom_calibration_active">Calibración Personalizada Activa</string>
+    <string name="factory_calibration">Calibración de Fábrica</string>
+    <string name="sensor_calibration_desc">Coloca tu teléfono apoyado sobre una superficie perfectamente nivelada y pulsa \'Calibrar Cero\' para establecer la referencia de 0.0°.</string>
+    <string name="haptic_and_audio_section">Vibración, Audio y Voz</string>
+    <string name="haptic_vibration_title">Vibración al Nivelar (0° / 90°)</string>
+    <string name="haptic_vibration_desc">Emitir un pulso háptico suave al alcanzar la inclinación exacta</string>
+    <string name="proximity_beeps_title">Pitidos de Proximidad (Radar)</string>
+    <string name="proximity_beeps_desc">Sonar pitidos más frecuentes a medida que te acercas a 0°</string>
+    <string name="voice_assistant_title">Asistente de Voz (TTS)</string>
+    <string name="voice_assistant_desc">Lectura por voz de la inclinación al congelar la pantalla</string>
+    <string name="theme_mode_section">Modo de Tema</string>
+    <string name="theme_auto">Auto</string>
+    <string name="theme_light">Claro</string>
+    <string name="theme_dark">Oscuro</string>
+    <string name="oled_mode_title">Modo OLED</string>
+    <string name="oled_mode_desc">Fondo negro absoluto para pantallas AMOLED</string>
+
+    <!-- Información -->
+    <string name="email_copied_toast">Email copiado!</string>
+    <string name="share_contact">Compartir datos de contacto</string>
+    <string name="contact_subject">Contacto Full Level</string>
+    <string name="contact_body">Hola, me gustaría contactar a Alexander Lopez (Dall Studio) - dall.studioficial@gmail.com</string>
+    <string name="share_contact_title">Compartir info de contacto</string>
+
+    <!-- Lectura TTS y Sensores -->
+    <string name="sensors_not_available">Los sensores necesarios no están disponibles en este dispositivo.</string>
+
+    <!-- Paletas de Temas -->
+    <string name="theme_green">Bosque Verde</string>
+    <string name="theme_blue">Azul Océano</string>
+    <string name="theme_orange">Naranja Fuego</string>
+    <string name="theme_purple">Púrpura Imperial</string>
+    <string name="theme_red">Rojo Rubí</string>
+    <string name="theme_gold">Dorado Ámbar</string>
+    <string name="theme_dynamic">Material You</string>
+
+    <!-- Guía de primera ejecución -->
+    <string name="guide_brand">FULL LEVEL • GUÍA RÁPIDA</string>
+    <string name="guide_step_counter">%1$d de %2$d</string>
+    <string name="guide_skip">Omitir</string>
+    <string name="guide_next">Continuar</string>
+    <string name="guide_start">Empezar a medir</string>
+    <string name="guide_live_reading">Lectura en vivo</string>
+    <string name="guide_mini_dial">Observa cómo se mueve el mini dial</string>
+    <string name="guide_welcome_title">Te damos la bienvenida a Full Level</string>
+    <string name="guide_welcome_body">Un clinómetro preciso para medir pendientes, alinear superficies y trabajar con confianza.</string>
+    <string name="guide_level_title">Observa cada movimiento</string>
+    <string name="guide_level_body">Inclina el teléfono suavemente. Observa cómo se mueve la aguja del mini dial y compárala con la lectura en vivo. Mantén el dispositivo firme para una medición más fiable.</string>
+    <string name="guide_modes_title">Elige cómo medir</string>
+    <string name="guide_modes_body">Los grados muestran el ángulo. Pitch expresa la pendiente como subida vertical por cada 12 unidades de distancia horizontal.</string>
+    <string name="guide_reference_title">Configura la referencia</string>
+    <string name="guide_reference_body">Alterna entre las referencias de 0° y 90° para trabajos horizontales o verticales. Para mayor precisión, calibra sobre una superficie nivelada conocida.</string>
+    <string name="guide_tools_title">Ten la medición siempre a mano</string>
+    <string name="guide_tools_body">Congela una lectura para revisarla o abre la cámara para alinear una superficie con el nivel en vivo.</string>
+    <string name="guide_ready_title">Ya estás listo</string>
+    <string name="guide_ready_body">Eso es todo para empezar. Puedes volver a abrir esta guía cuando quieras desde Ajustes.</string>
+    <string name="guide_settings_section">Primeros pasos</string>
+    <string name="guide_settings_title">Guía de la app</string>
+    <string name="guide_settings_desc">Repasa las herramientas principales y aprende a medir</string>
+</resources>

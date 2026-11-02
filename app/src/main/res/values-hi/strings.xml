@@ -1,0 +1,134 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- नाम और पहचान -->
+    <string name="app_name">क्लीनोमीटर प्रो</string>
+    <string name="app_title">क्लीनोमीटर</string>
+    <string name="app_pro_title">क्लीनोमीटर PRO</string>
+    <string name="camera_level_title">कैमरा लेवल PRO</string>
+    <string name="settings_title">PRO सेटिंग्स</string>
+    <string name="about_title">ऐप के बारे में</string>
+    <string name="about_app_name">FULL LEVEL</string>
+
+    <!-- स्थितियां और बैज -->
+    <string name="calibrated">कैलिब्रेटेड</string>
+    <string name="calibrating">कैलिब्रेट हो रहा है&#8230;</string>
+    <string name="calibrated_pro">PRO कैलिब्रेशन</string>
+    <string name="measuring">माप रहा है</string>
+    <string name="leveled">समतल!</string>
+    <string name="held">स्थिर</string>
+    <string name="theme_selected">चयनित</string>
+
+    <!-- इकाइयां और मोड -->
+    <string name="degrees">डिग्री</string>
+    <string name="pitch">पिच (X/12)</string>
+    <string name="ref_0">संदर्भ: 0°</string>
+    <string name="ref_90">संदर्भ: 90°</string>
+    <string name="infinity_pitch">अनंत / 12</string>
+
+    <!-- बटन और क्रियाएं -->
+    <string name="freeze">स्थिर करें</string>
+    <string name="resume">पुनः प्रारंभ</string>
+    <string name="calibrate">कैलिब्रेट करें</string>
+    <string name="calibrate_zero">शून्य कैलिब्रेट करें</string>
+    <string name="reset">रीसेट करें</string>
+    <string name="cancel">रद्द करें</string>
+    <string name="camera">कैमरा</string>
+    <string name="settings">सेटिंग्स</string>
+    <string name="info">जानकारी</string>
+    <string name="back">पीछे</string>
+    <string name="retry">पुनः प्रयास करें</string>
+    <string name="error">त्रुटि</string>
+    <string name="capture">फोटो लें</string>
+    <string name="share">शेयर करें</string>
+    <string name="continue_measuring">मापना जारी रखें</string>
+    <string name="copy">कॉपी करें</string>
+    <string name="support_button">समर्थन करें</string>
+
+    <!-- कैमरा और ओवरले -->
+    <string name="flashlight">फ्लैशलाइट</string>
+    <string name="grid">ग्रिड</string>
+    <string name="change_mode">मोड बदलें</string>
+    <string name="capture_saved_toast">गैलरी में सहेजा गया!</string>
+    <string name="capture_saved_dialog_title">फोटो सहेजी गई!</string>
+    <string name="camera_permission_required">इस टूल का उपयोग करने के लिए कैमरा अनुमति की आवश्यकता है।</string>
+    <string name="grant_permission">अनुमति दें</string>
+    <string name="share_title">PRO माप शेयर करें</string>
+
+    <!-- कैलिब्रेशन संवाद -->
+    <string name="calibration_mode">कैलिब्रेशन मोड</string>
+    <string name="calibration_step_1">1. डिवाइस को समतल सतह पर रखें और स्थिर रखें।</string>
+    <string name="calibration_step_2">2. इस स्थिति को शून्य बिंदु (0.0°) पर सेट करने के लिए \'शून्य कैलिब्रेट करें\' दबाएं।</string>
+    <string name="calibration_success_toast">सफलतापूर्वक शून्य (0.0°) कैलिब्रेट किया गया!</string>
+    <string name="calibration_reset_toast">कैलिब्रेशन रीसेट हो गया</string>
+
+    <!-- सेटिंग्स -->
+    <string name="app_language_section">ऐप की भाषा</string>
+    <string name="app_language_title">भाषा</string>
+    <string name="app_language_desc">इंटरफ़ेस के लिए अपनी पसंदीदा भाषा चुनें</string>
+    <string name="lang_auto">सिस्टम डिफ़ॉल्ट (ऑटो)</string>
+    <string name="pro_support">PRO समर्थन</string>
+    <string name="support_title">Full Level PRO का समर्थन करें</string>
+    <string name="support_desc">ऐप विकास का समर्थन करने के लिए एक छोटा वीडियो देखें</string>
+    <string name="support_thanks_toast">Full Level PRO का समर्थन करने के लिए बहुत धन्यवाद!</string>
+    <string name="theme_palette_section">M3 थीम पैलेट</string>
+    <string name="sensor_calibration_section">सेंसर कैलिब्रेशन</string>
+    <string name="custom_calibration_active">कस्टम कैलिब्रेशन सक्रिय</string>
+    <string name="factory_calibration">फ़ैक्टरी कैलिब्रेशन</string>
+    <string name="sensor_calibration_desc">अपने फ़ोन को समतल सतह पर रखें और संदर्भ 0.0° सेट करने के लिए \'शून्य कैलिब्रेट करें\' दबाएं।</string>
+    <string name="haptic_and_audio_section">कंपन, ऑडियो और आवाज</string>
+    <string name="haptic_vibration_title">समतल होने पर कंपन (0° / 90°)</string>
+    <string name="haptic_vibration_desc">सटीक स्तर पर पहुंचने पर हल्का वाइब्रेशन</string>
+    <string name="proximity_beeps_title">निकटता बीप (रडार)</string>
+    <string name="proximity_beeps_desc">0° के करीब पहुंचने पर अधिक तेज़ बीप ध्वनि</string>
+    <string name="voice_assistant_title">वॉ视स्टेंट (TTS)</string>
+    <string name="voice_assistant_desc">स्क्रीन फ़्रीज़ करने पर कोण की आवाज़ में रीडिंग</string>
+    <string name="theme_mode_section">थीम मोड</string>
+    <string name="theme_auto">ऑटो</string>
+    <string name="theme_light">लाइट</string>
+    <string name="theme_dark">डार्क</string>
+    <string name="oled_mode_title">OLED मोड</string>
+    <string name="oled_mode_desc">AMOLED स्क्रीन के लिए गहरा काला बैकग्राउंड</string>
+
+    <!-- ऐप के बारे में -->
+    <string name="email_copied_toast">ईमेल कॉपी हो गया!</string>
+    <string name="share_contact">संपर्क जानकारी शेयर करें</string>
+    <string name="contact_subject">Full Level संपर्क</string>
+    <string name="contact_body">नमस्ते, मैं Alexander Lopez (Dall Studio) से संपर्क करना चाहता हूं - dall.studioficial@gmail.com</string>
+    <string name="share_contact_title">संपर्क जानकारी शेयर करें</string>
+
+    <!-- TTS और सेंसर -->
+    <string name="sensors_not_available">इस डिवाइस पर आवश्यक सेंसर उपलब्ध नहीं हैं।</string>
+
+    <!-- थीम पैलेट -->
+    <string name="theme_green">हरा जंगल</string>
+    <string name="theme_blue">समुद्री नीला</string>
+    <string name="theme_orange">आग सा नारंगी</string>
+    <string name="theme_purple">शाही बैंगनी</string>
+    <string name="theme_red">रूबी लाल</string>
+    <string name="theme_gold">एम्बर गोल्ड</string>
+    <string name="theme_dynamic">Material You</string>
+
+    <!-- पहली बार उपयोग करने की मार्गदर्शिका -->
+    <string name="guide_brand">FULL LEVEL • त्वरित मार्गदर्शिका</string>
+    <string name="guide_step_counter">%1$d में से %2$d</string>
+    <string name="guide_skip">छोड़ें</string>
+    <string name="guide_next">जारी रखें</string>
+    <string name="guide_start">मापना शुरू करें</string>
+    <string name="guide_live_reading">लाइव रीडिंग</string>
+    <string name="guide_mini_dial">मिनी डायल की सुई को चलते देखें</string>
+    <string name="guide_welcome_title">Full Level में आपका स्वागत है</string>
+    <string name="guide_welcome_body">ढलान मापने, सतहों को सही करने और पूरे भरोसे के साथ काम करने के लिए एक सटीक क्लिनोमीटर।</string>
+    <string name="guide_level_title">हर बदलाव को देखें</string>
+    <string name="guide_level_body">फ़ोन को धीरे-धीरे झुकाएँ। मिनी डायल की सुई को चलते देखें और लाइव रीडिंग से उसकी तुलना करें। भरोसेमंद माप के लिए डिवाइस को स्थिर रखें।</string>
+    <string name="guide_modes_title">मापने का तरीका चुनें</string>
+    <string name="guide_modes_body">डिग्री कोण दिखाती हैं। Pitch, हर 12 इकाई की क्षैतिज दूरी पर ऊर्ध्वाधर बढ़त के रूप में ढलान बताता है।</string>
+    <string name="guide_reference_title">अपना संदर्भ चुनें</string>
+    <string name="guide_reference_body">क्षैतिज या ऊर्ध्वाधर काम के लिए 0° और 90° संदर्भ बदलें। अधिक सटीकता के लिए किसी ज्ञात समतल सतह पर कैलिब्रेट करें।</string>
+    <string name="guide_tools_title">माप को अपने पास रखें</string>
+    <string name="guide_tools_body">रीडिंग की समीक्षा करने के लिए उसे स्थिर करें, या लाइव लेवल ओवरले के साथ सतह को सही करने के लिए कैमरा खोलें।</string>
+    <string name="guide_ready_title">अब आप तैयार हैं</string>
+    <string name="guide_ready_body">शुरू करने के लिए बस इतना ही। आप इस मार्गदर्शिका को सेटिंग्स से कभी भी फिर से खोल सकते हैं।</string>
+    <string name="guide_settings_section">शुरुआत करें</string>
+    <string name="guide_settings_title">ऐप मार्गदर्शिका</string>
+    <string name="guide_settings_desc">मुख्य टूल देखें और मापना सीखें</string>
+</resources>

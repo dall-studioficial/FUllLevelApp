@@ -2,7 +2,6 @@ package dall.full.level.app.ui.components
 
 import androidx.compose.animation.core.animateFloatAsState
 import androidx.compose.animation.core.tween
-import androidx.compose.foundation.Image
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.Card
@@ -17,12 +16,9 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.graphicsLayer
-import androidx.compose.ui.layout.ContentScale
-import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
-import dall.full.level.app.R
 import dall.full.level.app.data.ClinometerData
 import java.util.Locale
 import kotlin.math.abs
@@ -76,22 +72,12 @@ fun ClinometerCircle(
         modifier = modifier.fillMaxSize(),
         contentAlignment = Alignment.Center
     ) {
-        Image(
-            painter = painterResource(id = R.drawable.dall_c),
-            contentDescription = null,
-            contentScale = ContentScale.Fit,
+        ClinometerDial(
+            needleAngle = normalizedAzimuth,
             modifier = Modifier
                 .fillMaxSize()
-                .aspectRatio(1f)
-                .graphicsLayer { rotationZ = if (isRotatedReference) 90f else 0f }
-        )
-
-        Image(
-            painter = painterResource(id = R.drawable.dall_a),
-            contentDescription = null,
-            modifier = Modifier
-                .fillMaxSize()
-                .graphicsLayer { rotationZ = normalizedAzimuth }
+                .aspectRatio(1f),
+            referenceAngle = if (isRotatedReference) 90f else 0f
         )
 
         Card(

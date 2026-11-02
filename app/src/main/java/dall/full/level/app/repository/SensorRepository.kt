@@ -105,7 +105,8 @@ class SensorRepository @Inject constructor(@ApplicationContext context: Context)
 
                         // Obtener azimut del cálculo original para la orientación absoluta
                         val roll = Math.toDegrees(orientationAngles[2].toDouble()).toFloat()
-                        val needleAngle = ((smoothedRoll + 180f) % 360f + 360f) % 360f
+                        // Conserva la vuelta completa: plegar el eje a 180° invertía la aguja al pasar 90°.
+                        val needleAngle = smoothedRoll
 
                         val clinometerData = ClinometerData(
                             pitchAngle = calibratedRoll, // Roll como ángulo principal

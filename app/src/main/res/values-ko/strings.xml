@@ -1,0 +1,134 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- 이름 및 식별 -->
+    <string name="app_name">경사계 Pro</string>
+    <string name="app_title">경사계</string>
+    <string name="app_pro_title">경사계 PRO</string>
+    <string name="camera_level_title">카메라 수평계 PRO</string>
+    <string name="settings_title">PRO 설정</string>
+    <string name="about_title">앱 정보</string>
+    <string name="about_app_name">FULL LEVEL</string>
+
+    <!-- 상태 및 배지 -->
+    <string name="calibrated">보정됨</string>
+    <string name="calibrating">보정 중&#8230;</string>
+    <string name="calibrated_pro">PRO 보정</string>
+    <string name="measuring">측정 중</string>
+    <string name="leveled">수평 맞춤!</string>
+    <string name="held">고정됨</string>
+    <string name="theme_selected">선택됨</string>
+
+    <!-- 단위 및 모드 -->
+    <string name="degrees">도(°)</string>
+    <string name="pitch">경사도 (X/12)</string>
+    <string name="ref_0">기준: 0°</string>
+    <string name="ref_90">기준: 90°</string>
+    <string name="infinity_pitch">무한대 / 12</string>
+
+    <!-- 버튼 및 작업 -->
+    <string name="freeze">고정</string>
+    <string name="resume">해제</string>
+    <string name="calibrate">보정</string>
+    <string name="calibrate_zero">영점 보정</string>
+    <string name="reset">초기화</string>
+    <string name="cancel">취소</string>
+    <string name="camera">카메라</string>
+    <string name="settings">설정</string>
+    <string name="info">정보</string>
+    <string name="back">뒤로</string>
+    <string name="retry">재시도</string>
+    <string name="error">오류</string>
+    <string name="capture">촬영</string>
+    <string name="share">공유</string>
+    <string name="continue_measuring">계속 측정하기</string>
+    <string name="copy">복사</string>
+    <string name="support_button">후원하기</string>
+
+    <!-- 카메라 및 오버레이 -->
+    <string name="flashlight">손전등</string>
+    <string name="grid">격자</string>
+    <string name="change_mode">모드 변경</string>
+    <string name="capture_saved_toast">갤러리에 저장되었습니다!</string>
+    <string name="capture_saved_dialog_title">캡처 저장 완료!</string>
+    <string name="camera_permission_required">이 기능을 사용하려면 카메라 권한이 필요합니다.</string>
+    <string name="grant_permission">권한 허용</string>
+    <string name="share_title">PRO 측정 결과 공유</string>
+
+    <!-- 보정 대화상자 -->
+    <string name="calibration_mode">보정 모드</string>
+    <string name="calibration_step_1">1. 기기를 평평한 수평면에 놓고 흔들리지 않게 유지하세요.</string>
+    <string name="calibration_step_2">2. \'영점 보정\' 버튼을 눌러 현재 위치를 기준 영점(0.0°)으로 설정하세요.</string>
+    <string name="calibration_success_toast">영점(0.0°) 보정이 완료되었습니다!</string>
+    <string name="calibration_reset_toast">보정이 초기화되었습니다</string>
+
+    <!-- 설정 -->
+    <string name="app_language_section">앱 언어</string>
+    <string name="app_language_title">언어</string>
+    <string name="app_language_desc">인터페이스에 사용할 선호 언어를 선택하세요</string>
+    <string name="lang_auto">시스템 기본값 (자동)</string>
+    <string name="pro_support">PRO 후원</string>
+    <string name="support_title">Full Level PRO 후원하기</string>
+    <string name="support_desc">짧은 동영상을 시청하여 개발을 지원해주세요</string>
+    <string name="support_thanks_toast">Full Level PRO를 후원해주셔서 정말 감사합니다!</string>
+    <string name="theme_palette_section">M3 테마 팔레트</string>
+    <string name="sensor_calibration_section">센서 보정</string>
+    <string name="custom_calibration_active">사용자 보정 적용 중</string>
+    <string name="factory_calibration">공장 출하 보정</string>
+    <string name="sensor_calibration_desc">평평한 수평면에 휴대폰을 놓고 \'영점 보정\'을 눌러 기준 0.0°를 설정하세요.</string>
+    <string name="haptic_and_audio_section">진동, 오디오 및 음성</string>
+    <string name="haptic_vibration_title">수평 도달 시 진동 (0° / 90°)</string>
+    <string name="haptic_vibration_desc">정확한 수평 도달 시 부드러운 햅틱 피드백 발생</string>
+    <string name="proximity_beeps_title">근접 비프음 (레이더)</string>
+    <string name="proximity_beeps_desc">0°에 가까워질수록 더 빠른 비프음 출력</string>
+    <string name="voice_assistant_title">음성 안내 (TTS)</string>
+    <string name="voice_assistant_desc">화면 고정 시 기울기 각도를 음성으로 읽어줍니다</string>
+    <string name="theme_mode_section">테마 모드</string>
+    <string name="theme_auto">자동</string>
+    <string name="theme_light">라이트</string>
+    <string name="theme_dark">다크</string>
+    <string name="oled_mode_title">OLED 모드</string>
+    <string name="oled_mode_desc">AMOLED 화면을 위한 트루 블랙 배경</string>
+
+    <!-- 정보 -->
+    <string name="email_copied_toast">이메일이 복사되었습니다!</string>
+    <string name="share_contact">연락처 공유</string>
+    <string name="contact_subject">Full Level 문의</string>
+    <string name="contact_body">안녕하세요, Alexander Lopez (Dall Studio)에게 문의드립니다 - dall.studioficial@gmail.com</string>
+    <string name="share_contact_title">연락처 정보 공유</string>
+
+    <!-- TTS 및 센서 -->
+    <string name="sensors_not_available">이 기기에서는 필요한 센서를 지원하지 않습니다.</string>
+
+    <!-- 테마 팔레트 -->
+    <string name="theme_green">그린 포레스트</string>
+    <string name="theme_blue">오션 블루</string>
+    <string name="theme_orange">파이어 오렌지</string>
+    <string name="theme_purple">임페리얼 퍼플</string>
+    <string name="theme_red">루비 레드</string>
+    <string name="theme_gold">앰버 골드</string>
+    <string name="theme_dynamic">Material You</string>
+
+    <!-- 첫 실행 가이드 -->
+    <string name="guide_brand">FULL LEVEL • 빠른 가이드</string>
+    <string name="guide_step_counter">%2$d단계 중 %1$d단계</string>
+    <string name="guide_skip">건너뛰기</string>
+    <string name="guide_next">계속</string>
+    <string name="guide_start">측정 시작</string>
+    <string name="guide_live_reading">실시간 측정값</string>
+    <string name="guide_mini_dial">미니 다이얼 바늘의 움직임을 확인하세요</string>
+    <string name="guide_welcome_title">Full Level에 오신 것을 환영합니다</string>
+    <string name="guide_welcome_body">경사를 측정하고 표면을 맞추며 자신 있게 작업할 수 있도록 도와주는 정밀 경사계입니다.</string>
+    <string name="guide_level_title">움직임을 바로 확인하세요</string>
+    <string name="guide_level_body">휴대폰을 천천히 기울여 보세요. 미니 다이얼 바늘의 움직임을 확인하고 실시간 측정값과 비교해 보세요. 정확한 측정을 위해 기기를 안정적으로 잡아 주세요.</string>
+    <string name="guide_modes_title">측정 방식을 선택하세요</string>
+    <string name="guide_modes_body">각도 모드는 기울기를 각도로 표시합니다. Pitch는 수평 거리 12단위당 수직 상승량으로 경사를 나타냅니다.</string>
+    <string name="guide_reference_title">기준을 설정하세요</string>
+    <string name="guide_reference_body">수평 또는 수직 작업에 맞게 0°와 90° 기준을 전환하세요. 정확도를 높이려면 수평이 확인된 표면에서 보정하세요.</string>
+    <string name="guide_tools_title">측정값을 편리하게 확인하세요</string>
+    <string name="guide_tools_body">측정값을 고정해 확인하거나 카메라를 열어 실시간 수평 오버레이로 표면을 맞출 수 있습니다.</string>
+    <string name="guide_ready_title">이제 사용할 준비가 되었습니다</string>
+    <string name="guide_ready_body">시작에 필요한 내용을 모두 살펴봤습니다. 설정에서 언제든 이 가이드를 다시 열 수 있습니다.</string>
+    <string name="guide_settings_section">시작하기</string>
+    <string name="guide_settings_title">앱 사용 가이드</string>
+    <string name="guide_settings_desc">주요 도구를 확인하고 측정 방법을 알아보세요</string>
+</resources>

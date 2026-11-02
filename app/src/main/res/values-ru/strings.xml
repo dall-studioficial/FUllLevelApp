@@ -1,0 +1,134 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- Название и идентификация -->
+    <string name="app_name">Инклинометр Pro</string>
+    <string name="app_title">Инклинометр</string>
+    <string name="app_pro_title">Инклинометр PRO</string>
+    <string name="camera_level_title">Камера-Уровень PRO</string>
+    <string name="settings_title">Настройки PRO</string>
+    <string name="about_title">О приложении</string>
+    <string name="about_app_name">FULL LEVEL</string>
+
+    <!-- Статусы и значки -->
+    <string name="calibrated">ОТКАЛИБРОВАНО</string>
+    <string name="calibrating">КАЛИБРОВКА&#8230;</string>
+    <string name="calibrated_pro">PRO КАЛИБРОВКА</string>
+    <string name="measuring">ИЗМЕРЕНИЕ</string>
+    <string name="leveled">УРОВЕНЬ!</string>
+    <string name="held">ЗАФИКСИРОВАНО</string>
+    <string name="theme_selected">Выбрано</string>
+
+    <!-- Единицы и режимы -->
+    <string name="degrees">Градусы</string>
+    <string name="pitch">Уклон (X/12)</string>
+    <string name="ref_0">База: 0°</string>
+    <string name="ref_90">База: 90°</string>
+    <string name="infinity_pitch">Бесконечность / 12</string>
+
+    <!-- Кнопки и действия -->
+    <string name="freeze">Зафиксировать</string>
+    <string name="resume">Продолжить</string>
+    <string name="calibrate">КАЛИБРОВАТЬ</string>
+    <string name="calibrate_zero">Калибровать ноль</string>
+    <string name="reset">Сброс</string>
+    <string name="cancel">Отмена</string>
+    <string name="camera">Камера</string>
+    <string name="settings">Настройки</string>
+    <string name="info">Инфо</string>
+    <string name="back">Назад</string>
+    <string name="retry">Повторить</string>
+    <string name="error">Ошибка</string>
+    <string name="capture">Снять</string>
+    <string name="share">Поделиться</string>
+    <string name="continue_measuring">Продолжить измерения</string>
+    <string name="copy">Копировать</string>
+    <string name="support_button">Поддержать</string>
+
+    <!-- Камера и оверлей -->
+    <string name="flashlight">Фонарик</string>
+    <string name="grid">Сетка</string>
+    <string name="change_mode">Сменить режим</string>
+    <string name="capture_saved_toast">Снимок сохранен в Галерею!</string>
+    <string name="capture_saved_dialog_title">Снимок сохранен!</string>
+    <string name="camera_permission_required">Для работы этой функции требуется доступ к камере.</string>
+    <string name="grant_permission">Предоставить доступ</string>
+    <string name="share_title">Поделиться измерением PRO</string>
+
+    <!-- Диалог калибровки -->
+    <string name="calibration_mode">Режим калибровки</string>
+    <string name="calibration_step_1">1. Положите устройство на ровную горизонтальную поверхность и удерживайте неподвижно.</string>
+    <string name="calibration_step_2">2. Нажмите «Калибровать ноль», чтобы установить это положение как нулевое (0.0°).</string>
+    <string name="calibration_success_toast">Успешно откалибровано в ноль (0.0°)!</string>
+    <string name="calibration_reset_toast">Калибровка сброшена</string>
+
+    <!-- Настройки -->
+    <string name="app_language_section">Язык приложения</string>
+    <string name="app_language_title">Язык</string>
+    <string name="app_language_desc">Выберите предпочитаемый язык интерфейса</string>
+    <string name="lang_auto">По умолчанию (Авто)</string>
+    <string name="pro_support">Поддержка PRO</string>
+    <string name="support_title">Поддержать Full Level PRO</string>
+    <string name="support_desc">Посмотрите короткое видео для поддержки разработки приложения</string>
+    <string name="support_thanks_toast">Большое спасибо за поддержку Full Level PRO!</string>
+    <string name="theme_palette_section">Палитра темы M3</string>
+    <string name="sensor_calibration_section">Калибровка датчиков</string>
+    <string name="custom_calibration_active">Активирована пользовательская калибровка</string>
+    <string name="factory_calibration">Заводская калибровка</string>
+    <string name="sensor_calibration_desc">Положите телефон на ровную поверхность и нажмите «Калибровать ноль» для установки базы 0.0°.</string>
+    <string name="haptic_and_audio_section">Вибрация, звук и голос</string>
+    <string name="haptic_vibration_title">Вибрация при уровне (0° / 90°)</string>
+    <string name="haptic_vibration_desc">Мягкий виброотклик при достижении точного уровня</string>
+    <string name="proximity_beeps_title">Звуковой локатор (Радар)</string>
+    <string name="proximity_beeps_desc">Учащенный сигнал по мере приближения к 0°</string>
+    <string name="voice_assistant_title">Голосовой помощник (TTS)</string>
+    <string name="voice_assistant_desc">Озвучивание угла наклона при фиксации экрана</string>
+    <string name="theme_mode_section">Режим темы</string>
+    <string name="theme_auto">Авто</string>
+    <string name="theme_light">Светлая</string>
+    <string name="theme_dark">Темная</string>
+    <string name="oled_mode_title">Режим OLED</string>
+    <string name="oled_mode_desc">Абсолютно черный фон для AMOLED-экранов</string>
+
+    <!-- О приложении -->
+    <string name="email_copied_toast">Email скопирован!</string>
+    <string name="share_contact">Поделиться контактом</string>
+    <string name="contact_subject">Обращение по Full Level</string>
+    <string name="contact_body">Здравствуйте, я хочу связаться с Alexander Lopez (Dall Studio) - dall.studioficial@gmail.com</string>
+    <string name="share_contact_title">Поделиться контактными данными</string>
+
+    <!-- Голос и датчики -->
+    <string name="sensors_not_available">Необходимые датчики недоступны на этом устройстве.</string>
+
+    <!-- Палитры тем -->
+    <string name="theme_green">Зеленый лес</string>
+    <string name="theme_blue">Океанский синий</string>
+    <string name="theme_orange">Огненно-оранжевый</string>
+    <string name="theme_purple">Императорский пурпурный</string>
+    <string name="theme_red">Рубиново-красный</string>
+    <string name="theme_gold">Янтарное золото</string>
+    <string name="theme_dynamic">Material You</string>
+
+    <!-- Первое знакомство с приложением -->
+    <string name="guide_brand">FULL LEVEL • КРАТКОЕ РУКОВОДСТВО</string>
+    <string name="guide_step_counter">%1$d из %2$d</string>
+    <string name="guide_skip">Пропустить</string>
+    <string name="guide_next">Продолжить</string>
+    <string name="guide_start">Начать измерение</string>
+    <string name="guide_live_reading">Текущее показание</string>
+    <string name="guide_mini_dial">Следите за стрелкой мини-шкалы</string>
+    <string name="guide_welcome_title">Добро пожаловать в Full Level</string>
+    <string name="guide_welcome_body">Точный инклинометр для измерения уклонов, выравнивания поверхностей и уверенной работы.</string>
+    <string name="guide_level_title">Следите за изменениями</string>
+    <string name="guide_level_body">Медленно наклоняйте телефон. Следите за стрелкой мини-шкалы и сравнивайте её положение с текущим показанием. Для точных измерений держите устройство неподвижно.</string>
+    <string name="guide_modes_title">Выберите способ измерения</string>
+    <string name="guide_modes_body">Градусы показывают угол. Режим Pitch отображает уклон как вертикальный подъём на каждые 12 единиц горизонтального расстояния.</string>
+    <string name="guide_reference_title">Выберите базовый угол</string>
+    <string name="guide_reference_body">Переключайте базу 0° и 90° для горизонтальных и вертикальных работ. Для большей точности откалибруйте устройство на проверенной ровной поверхности.</string>
+    <string name="guide_tools_title">Удобно работайте с измерениями</string>
+    <string name="guide_tools_body">Зафиксируйте показание, чтобы изучить его, или откройте камеру для выравнивания поверхности по экранному уровню в реальном времени.</string>
+    <string name="guide_ready_title">Всё готово</string>
+    <string name="guide_ready_body">Теперь вы знаете всё необходимое для начала работы. Это руководство всегда доступно в настройках.</string>
+    <string name="guide_settings_section">Начало работы</string>
+    <string name="guide_settings_title">Руководство по приложению</string>
+    <string name="guide_settings_desc">Познакомьтесь с основными инструментами и измерениями</string>
+</resources>
