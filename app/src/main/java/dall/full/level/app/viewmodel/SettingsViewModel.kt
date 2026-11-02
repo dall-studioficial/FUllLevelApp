@@ -31,6 +31,7 @@ class SettingsViewModel @Inject constructor(
     private val ttsEnabledKey = booleanPreferencesKey("tts_enabled")
     private val themePaletteKey = stringPreferencesKey("theme_palette")
     private val languageKey = stringPreferencesKey("language_code")
+    private val tutorialCompletedKey = booleanPreferencesKey("tutorial_completed")
 
     private val _darkTheme = MutableStateFlow(false)
     val darkTheme: StateFlow<Boolean> = _darkTheme.asStateFlow()
@@ -46,6 +47,12 @@ class SettingsViewModel @Inject constructor(
 
     private val _appLanguage = MutableStateFlow(AppLanguage.fromApplicationLocales())
     val appLanguage: StateFlow<AppLanguage> = _appLanguage.asStateFlow()
+
+    private val _tutorialCompleted = MutableStateFlow<Boolean?>(null)
+    val tutorialCompleted: StateFlow<Boolean?> = _tutorialCompleted.asStateFlow()
+
+    private val _tutorialRequested = MutableStateFlow(false)
+    val tutorialRequested: StateFlow<Boolean> = _tutorialRequested.asStateFlow()
 
     private val _pitchOffset = MutableStateFlow(0f)
     val pitchOffset: StateFlow<Float> = _pitchOffset.asStateFlow()
@@ -83,7 +90,7 @@ class SettingsViewModel @Inject constructor(
 
                 val language = AppLanguage.fromCode(prefs[languageKey] ?: "")
 
-                Tuple10(
+                Tuple11(
                     prefs[darkThemeKey] ?: false,
                     prefs[oledModeKey] ?: false,
                     prefs[followSystemThemeKey] ?: false,
@@ -93,7 +100,8 @@ class SettingsViewModel @Inject constructor(
                     prefs[beepEnabledKey] ?: true,
                     prefs[ttsEnabledKey] ?: true,
                     palette,
-                    language
+                    language,
+                    prefs[tutorialCompletedKey] ?: false
                 )
             }
             .collect { tuple ->
@@ -110,11 +118,12 @@ class SettingsViewModel @Inject constructor(
                     _appLanguage.value = tuple.v10
                     AppLanguage.applyLanguage(tuple.v10)
                 }
+                _tutorialCompleted.value = tuple.v11
             }
     }
 
-    private data class Tuple10<A, B, C, D, E, F, G, H, I, J>(
-        val v1: A, val v2: B, val v3: C, val v4: D, val v5: E, val v6: F, val v7: G, val v8: H, val v9: I, val v10: J
+    private data class Tuple11<A, B, C, D, E, F, G, H, I, J, K>(
+        val v1: A, val v2: B, val v3: C, val v4: D, val v5: E, val v6: F, val v7: G, val v8: H, val v9: I, val v10: J, val v11: K
     )
 
     enum class ThemeMode { AUTO, LIGHT, DARK }
@@ -170,6 +179,20 @@ class SettingsViewModel @Inject constructor(
                 if (prefs[languageKey] != language.code) {
                     prefs[languageKey] = language.code
                 }
+            }
+        }
+    }
+
+    fun requestTutorial() {
+        _tutorialRequested.value = true
+    }
+
+    fun completeTutorial() {
+        _tutorialRequested.value = false
+        _tutorialCompleted.value = true
+        viewModelScope.launch {
+            dataStore.edit { prefs ->
+                prefs[tutorialCompletedKey] = true
             }
         }
     }

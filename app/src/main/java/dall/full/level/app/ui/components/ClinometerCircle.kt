@@ -24,6 +24,7 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import dall.full.level.app.R
 import dall.full.level.app.data.ClinometerData
+import java.util.Locale
 import kotlin.math.abs
 import kotlin.math.roundToInt
 
@@ -112,7 +113,7 @@ fun ClinometerCircle(
                     val toShow = if (mainAngle >= 999f) {
                         "Infinito/12"
                     } else {
-                        "${mainAngle.roundToInt()}/12"
+                        String.format(Locale.getDefault(), "%.1f/12", mainAngle)
                     }
                     Text(
                         text = toShow,

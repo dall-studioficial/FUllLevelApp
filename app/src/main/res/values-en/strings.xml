@@ -107,4 +107,28 @@
     <string name="theme_red">Ruby Red</string>
     <string name="theme_gold">Amber Gold</string>
     <string name="theme_dynamic">Material You</string>
+
+    <!-- First-run guide -->
+    <string name="guide_brand">FULL LEVEL • QUICK GUIDE</string>
+    <string name="guide_step_counter">%1$d of %2$d</string>
+    <string name="guide_skip">Skip</string>
+    <string name="guide_next">Continue</string>
+    <string name="guide_start">Start measuring</string>
+    <string name="guide_live_reading">Live reading</string>
+    <string name="guide_mini_dial">Watch the mini dial move</string>
+    <string name="guide_welcome_title">Welcome to Full Level</string>
+    <string name="guide_welcome_body">A precise clinometer, ready to help you measure slopes, align surfaces, and work with confidence.</string>
+    <string name="guide_level_title">See every movement</string>
+    <string name="guide_level_body">Tilt your phone slowly. Watch the needle move on the mini dial and compare it with the live reading. Keep the device steady for the most reliable measurement.</string>
+    <string name="guide_modes_title">Choose how to measure</string>
+    <string name="guide_modes_body">Degrees show the angle. Pitch expresses slope as vertical rise for every 12 units of horizontal distance.</string>
+    <string name="guide_reference_title">Set your reference</string>
+    <string name="guide_reference_body">Switch between 0° and 90° references for horizontal or vertical work. For extra accuracy, calibrate on a known level surface.</string>
+    <string name="guide_tools_title">Keep your measurement handy</string>
+    <string name="guide_tools_body">Freeze a reading to review it, or open Camera to align a surface with the live level overlay.</string>
+    <string name="guide_ready_title">You are ready</string>
+    <string name="guide_ready_body">That is everything you need to get started. You can reopen this guide anytime from Settings.</string>
+    <string name="guide_settings_section">Getting started</string>
+    <string name="guide_settings_title">Product guide</string>
+    <string name="guide_settings_desc">Review the main tools and learn how to measure</string>
 </resources>

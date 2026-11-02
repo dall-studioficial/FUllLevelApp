@@ -66,7 +66,6 @@ import java.io.OutputStream
 import java.text.SimpleDateFormat
 import java.util.Locale
 import kotlin.math.abs
-import kotlin.math.round
 
 @OptIn(ExperimentalMaterial3Api::class, ExperimentalPermissionsApi::class)
 @Composable
@@ -540,7 +539,7 @@ fun ProOverlay(
 
                 val displayText = if (showPitch) {
                     if (angle >= 999f) "Infinito / 12"
-                    else "${round(angle).toInt()} / 12"
+                    else String.format(Locale.getDefault(), "%.1f / 12", angle)
                 } else {
                     String.format(Locale.getDefault(), "%.1f°", angle)
                 }
@@ -617,7 +616,8 @@ private fun takePhotoWithOverlay(
                     canvas.rotate(normalizedAzimuth + 180f, centerX, centerY - 280f)
 
                     val textValue = if (showPitch) {
-                        if (angle >= 999f) "Infinito / 12" else "${round(angle).toInt()} / 12"
+                        if (angle >= 999f) "Infinito / 12"
+                        else String.format(Locale.getDefault(), "%.1f / 12", angle)
                     } else {
                         String.format(Locale.getDefault(), "%.1f°", angle)
                     }

@@ -23,7 +23,9 @@ import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import dall.full.level.app.R
 import dall.full.level.app.ui.components.BannerAdView
 import dall.full.level.app.ui.components.ClinometerCircle
+import dall.full.level.app.ui.components.OnboardingGuide
 import dall.full.level.app.viewmodel.ClinometerViewModel
+import dall.full.level.app.viewmodel.SettingsViewModel
 import kotlinx.coroutines.flow.collectLatest
 import java.util.Locale
 import kotlin.math.abs
@@ -34,6 +36,7 @@ import kotlin.math.abs
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun ClinometerScreen(
+    settingsViewModel: SettingsViewModel,
     onInfoClick: () -> Unit = {},
     onSettingsClick: () -> Unit = {},
     onCameraClick: () -> Unit = {},
@@ -51,9 +54,16 @@ fun ClinometerScreen(
     val isBeepEnabled by viewModel.isBeepEnabled.collectAsState()
     val pitchOffset by viewModel.pitchOffset.collectAsState()
     val rollOffset by viewModel.rollOffset.collectAsState()
+    val tutorialCompleted by settingsViewModel.tutorialCompleted.collectAsState()
+    val tutorialRequested by settingsViewModel.tutorialRequested.collectAsState()
+    var tutorialStep by remember { mutableIntStateOf(0) }
 
     var showCalibrationDialog by remember { mutableStateOf(false) }
     val isCustomCalibrated = abs(pitchOffset) > 0.01f || abs(rollOffset) > 0.01f
+
+    LaunchedEffect(tutorialCompleted, tutorialRequested) {
+        if (tutorialRequested || tutorialCompleted == false) tutorialStep = 0
+    }
 
     // --- Efectos Secundarios ---
     LaunchedEffect(Unit) {
@@ -241,6 +251,7 @@ fun ClinometerScreen(
                                             color = MaterialTheme.colorScheme.onPrimaryContainer
                                         )
                                     }
+
                                 }
                             }
                         },
@@ -273,6 +284,29 @@ fun ClinometerScreen(
                                 }
                             }
                         }
+                    )
+                }
+
+                if (tutorialRequested || tutorialCompleted == false) {
+                    val liveReading = if (showPitch) {
+                        if (clinometerData.pitchAngle >= 999f) {
+                            stringResource(R.string.infinity_pitch)
+                        } else {
+                            String.format(
+                                Locale.getDefault(),
+                                "%.1f / 12",
+                                abs(clinometerData.pitchAngle)
+                            )
+                        }
+                    } else {
+                        String.format(Locale.getDefault(), "%.1f°", abs(clinometerData.pitchAngle))
+                    }
+                    OnboardingGuide(
+                        currentStep = tutorialStep,
+                        liveReading = liveReading,
+                        needleAngle = clinometerData.azimuthAngle,
+                        onNext = { tutorialStep += 1 },
+                        onFinish = settingsViewModel::completeTutorial
                     )
                 }
             }

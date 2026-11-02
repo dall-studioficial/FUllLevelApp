@@ -17,6 +17,7 @@ fun AppNavHost(navController: NavHostController, settingsVM: SettingsViewModel) 
     NavHost(navController = navController, startDestination = Destinations.CLINOMETER) {
         composable(Destinations.CLINOMETER) {
             ClinometerScreen(
+                settingsViewModel = settingsVM,
                 onInfoClick = {
                     navController.navigate(Destinations.INFO)
                 },
