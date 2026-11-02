@@ -43,7 +43,8 @@ import kotlin.math.abs
 fun SettingsScreen(
     viewModel: SettingsViewModel,
     clinometerViewModel: ClinometerViewModel = hiltViewModel(),
-    onBack: () -> Unit
+    onBack: () -> Unit,
+    onInfoClick: () -> Unit
 ) {
     val context = LocalContext.current
     val darkThemeEnabled by viewModel.darkTheme.collectAsState()
@@ -491,6 +492,48 @@ fun SettingsScreen(
                         ) {
                             Text(stringResource(R.string.support_button), maxLines = 1)
                         }
+                    }
+
+                }
+            }
+
+            SettingsSection(
+                title = stringResource(R.string.about_title),
+                icon = Icons.Default.Info
+            ) {
+                Card(
+                    modifier = Modifier
+                        .fillMaxWidth()
+                        .clickable(onClick = onInfoClick),
+                    shape = RoundedCornerShape(20.dp),
+                    colors = CardDefaults.cardColors(
+                        containerColor = MaterialTheme.colorScheme.surfaceContainerHigh
+                    )
+                ) {
+                    Row(
+                        modifier = Modifier
+                            .fillMaxWidth()
+                            .padding(16.dp),
+                        verticalAlignment = Alignment.CenterVertically,
+                        horizontalArrangement = Arrangement.spacedBy(14.dp)
+                    ) {
+                        Icon(
+                            Icons.Default.Info,
+                            contentDescription = null,
+                            tint = MaterialTheme.colorScheme.primary,
+                            modifier = Modifier.size(26.dp)
+                        )
+                        Text(
+                            stringResource(R.string.about_app_name),
+                            modifier = Modifier.weight(1f),
+                            style = MaterialTheme.typography.titleSmall,
+                            fontWeight = FontWeight.Bold
+                        )
+                        Icon(
+                            Icons.Default.ChevronRight,
+                            contentDescription = null,
+                            tint = MaterialTheme.colorScheme.onSurfaceVariant
+                        )
                     }
                 }
             }

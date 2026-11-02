@@ -37,7 +37,6 @@ import kotlin.math.abs
 @Composable
 fun ClinometerScreen(
     settingsViewModel: SettingsViewModel,
-    onInfoClick: () -> Unit = {},
     onSettingsClick: () -> Unit = {},
     onCameraClick: () -> Unit = {},
     viewModel: ClinometerViewModel = hiltViewModel()
@@ -115,7 +114,6 @@ fun ClinometerScreen(
                     }
                     IconButton(onClick = onCameraClick) { Icon(Icons.Filled.CameraAlt, stringResource(R.string.camera)) }
                     IconButton(onClick = onSettingsClick) { Icon(Icons.Filled.Settings, stringResource(R.string.settings)) }
-                    IconButton(onClick = onInfoClick) { Icon(Icons.Filled.Info, stringResource(R.string.info)) }
                 }
             )
         },

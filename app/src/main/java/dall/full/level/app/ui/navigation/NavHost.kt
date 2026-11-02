@@ -18,9 +18,6 @@ fun AppNavHost(navController: NavHostController, settingsVM: SettingsViewModel) 
         composable(Destinations.CLINOMETER) {
             ClinometerScreen(
                 settingsViewModel = settingsVM,
-                onInfoClick = {
-                    navController.navigate(Destinations.INFO)
-                },
                 onSettingsClick = {
                     navController.navigate(Destinations.SETTINGS)
                 },
@@ -39,7 +36,8 @@ fun AppNavHost(navController: NavHostController, settingsVM: SettingsViewModel) 
         composable(Destinations.SETTINGS) {
             SettingsScreen(
                 viewModel = settingsVM,
-                onBack = { navController.popBackStack() }
+                onBack = { navController.popBackStack() },
+                onInfoClick = { navController.navigate(Destinations.INFO) }
             )
         }
         composable(Destinations.CAMERA_LEVEL) {
