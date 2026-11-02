@@ -81,7 +81,7 @@ fun InfoScreen(
                 modifier = Modifier.fillMaxWidth()
             ) {
                 Column(modifier = Modifier.padding(18.dp)) {
-                    Text("Versión: 1.0.0 (PRO)", style = MaterialTheme.typography.bodyLarge)
+                    Text("Versión: 2.0 (PRO)", style = MaterialTheme.typography.bodyLarge)
                     Row(verticalAlignment = Alignment.CenterVertically) {
                         Icon(Icons.Filled.AlternateEmail, contentDescription = "email")
                         Spacer(Modifier.width(8.dp))

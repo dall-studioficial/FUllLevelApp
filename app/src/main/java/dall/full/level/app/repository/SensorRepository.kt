@@ -94,20 +94,13 @@ class SensorRepository @Inject constructor(@ApplicationContext context: Context)
                         val x = accelerometerValues[0]
                         val y = accelerometerValues[1]
 
-                        // Para rotación del teléfono (como ver video horizontal)
-                        // Calculamos el Roll usando atan2
                         val rollRadians = atan2(x.toDouble(), y.toDouble())
-                        var rollDegrees = Math.toDegrees(rollRadians).toFloat()
+                        val rollDegrees = Math.toDegrees(rollRadians).toFloat()
 
-                        // Ajustar para que vertical = 0°, horizontal = ±90°
-                        rollDegrees = when {
-                            rollDegrees > 90 -> rollDegrees - 180
-                            rollDegrees < -90 -> rollDegrees + 180
-                            else -> rollDegrees
-                        }
-
-                        // Aplicar filtro de suavizado
-                        val smoothedRoll = applyLowPassFilter(rollDegrees)
+                        // El eje del teléfono se repite cada 180°; conserva la rama más cercana
+                        // para que el filtro no invierta la aguja al cruzar ±90°.
+                        val continuousRoll = unwrapAxisAngle(rollDegrees, lastFilteredPitch)
+                        val smoothedRoll = applyLowPassFilter(continuousRoll)
                         val calibratedRoll = calibrateAngle(smoothedRoll)
 
                         // Obtener azimut del cálculo original para la orientación absoluta
