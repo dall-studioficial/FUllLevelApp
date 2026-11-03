@@ -90,6 +90,21 @@
     <string name="oled_mode_desc">适用于 AMOLED 屏幕的纯黑背景</string>
 
     <!-- 关于 -->
+    <string name="about_tagline">精准测量，结果可靠。</string>
+    <string name="about_version">版本 %1$s • PRO</string>
+    <string name="about_features_heading">探索应用功能</string>
+    <string name="about_measure_title">精准倾角测量</string>
+    <string name="about_measure_body">使用角度或 Pitch 模式测量，在 0° 和 90° 基准间切换，在已知平面上校准，并通过实时刻度盘观察变化。</string>
+    <string name="about_camera_title">相机水平仪</string>
+    <string name="about_camera_body">通过实时水平和垂直辅助线对齐表面。使用构图网格和手电筒，然后拍摄并分享测量结果。</string>
+    <string name="about_tools_title">测量工具</string>
+    <string name="about_tools_body">冻结或继续测量，并通过内置快速指南了解主要操作。</string>
+    <string name="about_feedback_title">声音、语音与振动</string>
+    <string name="about_feedback_body">开启接近提示音、语音读数，以及达到目标角度时的振动提醒。</string>
+    <string name="about_personalization_title">按你的习惯定制</string>
+    <string name="about_personalization_body">选择应用语言、浅色或深色主题、OLED 模式和喜欢的配色方案。</string>
+    <string name="about_contact_heading">联系与支持</string>
+    <string name="about_author">由 Alexander Lopez · Dall Studio 开发</string>
     <string name="email_copied_toast">邮箱已复制！</string>
     <string name="share_contact">分享联系方式</string>
     <string name="contact_subject">Full Level 联系反馈</string>

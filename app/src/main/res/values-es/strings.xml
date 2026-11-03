@@ -90,6 +90,21 @@
     <string name="oled_mode_desc">Fondo negro absoluto para pantallas AMOLED</string>
 
     <!-- Información -->
+    <string name="about_tagline">Mediciones precisas. Resultados confiables.</string>
+    <string name="about_version">Versión %1$s • PRO</string>
+    <string name="about_features_heading">Todo lo que puedes hacer</string>
+    <string name="about_measure_title">Clinómetro de precisión</string>
+    <string name="about_measure_body">Mide en grados o Pitch, alterna entre las referencias de 0° y 90°, calibra sobre una superficie conocida y sigue el movimiento en el dial en vivo.</string>
+    <string name="about_camera_title">Nivel con cámara</string>
+    <string name="about_camera_body">Alinea superficies con guías horizontales y verticales en vivo. Usa la cuadrícula y la linterna; luego captura y comparte la medición.</string>
+    <string name="about_tools_title">Herramientas de medición</string>
+    <string name="about_tools_body">Congela y reanuda lecturas, y consulta la guía integrada para aprender los controles principales.</string>
+    <string name="about_feedback_title">Audio, voz y vibración</string>
+    <string name="about_feedback_body">Activa pitidos de proximidad, lecturas por voz y vibración al alcanzar el ángulo objetivo.</string>
+    <string name="about_personalization_title">Hecha para ti</string>
+    <string name="about_personalization_body">Elige el idioma, el tema claro u oscuro, el modo OLED y una paleta de colores a tu gusto.</string>
+    <string name="about_contact_heading">Contacto y soporte</string>
+    <string name="about_author">Creada por Alexander Lopez · Dall Studio</string>
     <string name="email_copied_toast">Email copiado!</string>
     <string name="share_contact">Compartir datos de contacto</string>
     <string name="contact_subject">Contacto Full Level</string>

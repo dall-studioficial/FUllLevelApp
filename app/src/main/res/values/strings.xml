@@ -90,6 +90,21 @@
     <string name="oled_mode_desc">Pure black background for AMOLED screens</string>
 
     <!-- About -->
+    <string name="about_tagline">Precise measurements. Confident results.</string>
+    <string name="about_version">Version %1$s • PRO</string>
+    <string name="about_features_heading">Everything you can do</string>
+    <string name="about_measure_title">Precise clinometer</string>
+    <string name="about_measure_body">Measure in degrees or Pitch, switch between 0° and 90° references, calibrate to a known surface, and follow your movement on the live dial.</string>
+    <string name="about_camera_title">Camera level</string>
+    <string name="about_camera_body">Align surfaces with live horizontal and vertical guides. Use the framing grid and flashlight, then capture and share your measurement.</string>
+    <string name="about_tools_title">Measurement tools</string>
+    <string name="about_tools_body">Freeze and resume readings, and use the built-in quick guide to learn the main controls.</string>
+    <string name="about_feedback_title">Audio, voice and haptics</string>
+    <string name="about_feedback_body">Enable proximity beeps, spoken readings, and vibration when you reach the target angle.</string>
+    <string name="about_personalization_title">Made for you</string>
+    <string name="about_personalization_body">Choose your language, light or dark appearance, OLED mode, and a color palette that suits your style.</string>
+    <string name="about_contact_heading">Contact and support</string>
+    <string name="about_author">Created by Alexander Lopez · Dall Studio</string>
     <string name="email_copied_toast">Email copied!</string>
     <string name="share_contact">Share contact info</string>
     <string name="contact_subject">Full Level Contact</string>

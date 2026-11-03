@@ -499,7 +499,9 @@ fun ProOverlay(
             border = BorderStroke(1.dp, if (isLeveledHoriz) Color(0xFF4CAF50).copy(alpha = 0.6f) else Color(0xFFFFEB3B).copy(alpha = 0.4f))
         ) {
             Column(
-                modifier = Modifier.padding(horizontal = 32.dp, vertical = 14.dp),
+                modifier = Modifier
+                    .padding(horizontal = 32.dp, vertical = 14.dp)
+                    .graphicsLayer { rotationZ = 180f },
                 horizontalAlignment = Alignment.CenterHorizontally
             ) {
                 // Mostrar estado SOLO si está congelado o nivelado

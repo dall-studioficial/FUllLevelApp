@@ -90,6 +90,21 @@
     <string name="oled_mode_desc">AMOLED 화면을 위한 트루 블랙 배경</string>
 
     <!-- 정보 -->
+    <string name="about_tagline">정확한 측정, 믿을 수 있는 결과.</string>
+    <string name="about_version">버전 %1$s • PRO</string>
+    <string name="about_features_heading">앱의 모든 기능</string>
+    <string name="about_measure_title">정밀 경사계</string>
+    <string name="about_measure_body">각도 또는 Pitch로 측정하고 0°와 90° 기준을 전환하세요. 기준면에서 보정하고 실시간 다이얼에서 움직임을 확인할 수 있습니다.</string>
+    <string name="about_camera_title">카메라 수평계</string>
+    <string name="about_camera_body">실시간 수평·수직 가이드로 표면을 맞추세요. 구도 그리드와 손전등을 사용하고 측정 결과를 촬영해 공유할 수 있습니다.</string>
+    <string name="about_tools_title">측정 도구</string>
+    <string name="about_tools_body">측정값을 고정하거나 다시 시작하고, 빠른 가이드에서 주요 조작 방법을 확인하세요.</string>
+    <string name="about_feedback_title">소리, 음성 및 진동</string>
+    <string name="about_feedback_body">목표 각도에 가까워질 때 알림음, 음성 측정값 및 진동을 켤 수 있습니다.</string>
+    <string name="about_personalization_title">나에게 맞게 설정</string>
+    <string name="about_personalization_body">언어, 라이트·다크 테마, OLED 모드와 원하는 색상 팔레트를 선택하세요.</string>
+    <string name="about_contact_heading">문의 및 지원</string>
+    <string name="about_author">Alexander Lopez · Dall Studio 제작</string>
     <string name="email_copied_toast">이메일이 복사되었습니다!</string>
     <string name="share_contact">연락처 공유</string>
     <string name="contact_subject">Full Level 문의</string>

@@ -90,6 +90,21 @@
     <string name="oled_mode_desc">AMOLED स्क्रीन के लिए गहरा काला बैकग्राउंड</string>
 
     <!-- ऐप के बारे में -->
+    <string name="about_tagline">सटीक माप। भरोसेमंद परिणाम।</string>
+    <string name="about_version">संस्करण %1$s • PRO</string>
+    <string name="about_features_heading">आप क्या-क्या कर सकते हैं</string>
+    <string name="about_measure_title">सटीक क्लिनोमीटर</string>
+    <string name="about_measure_body">डिग्री या Pitch में मापें, 0° और 90° संदर्भ बदलें, ज्ञात सतह पर कैलिब्रेट करें और लाइव डायल पर बदलाव देखें।</string>
+    <string name="about_camera_title">कैमरा लेवल</string>
+    <string name="about_camera_body">लाइव क्षैतिज और ऊर्ध्वाधर गाइड से सतहों को संरेखित करें। ग्रिड और टॉर्च का उपयोग करें, फिर माप कैप्चर और साझा करें।</string>
+    <string name="about_tools_title">मापन उपकरण</string>
+    <string name="about_tools_body">रीडिंग रोकें और फिर जारी करें। मुख्य नियंत्रण सीखने के लिए ऐप की त्वरित मार्गदर्शिका देखें।</string>
+    <string name="about_feedback_title">ऑडियो, आवाज़ और कंपन</string>
+    <string name="about_feedback_body">लक्ष्य कोण तक पहुँचने पर निकटता बीप, आवाज़ में रीडिंग और कंपन चालू करें।</string>
+    <string name="about_personalization_title">आपकी पसंद के अनुसार</string>
+    <string name="about_personalization_body">अपनी भाषा, हल्का या गहरा थीम, OLED मोड और पसंदीदा रंग पैलेट चुनें।</string>
+    <string name="about_contact_heading">संपर्क और सहायता</string>
+    <string name="about_author">Alexander Lopez · Dall Studio द्वारा निर्मित</string>
     <string name="email_copied_toast">ईमेल कॉपी हो गया!</string>
     <string name="share_contact">संपर्क जानकारी शेयर करें</string>
     <string name="contact_subject">Full Level संपर्क</string>

@@ -90,6 +90,21 @@
     <string name="oled_mode_desc">Абсолютно черный фон для AMOLED-экранов</string>
 
     <!-- О приложении -->
+    <string name="about_tagline">Точные измерения. Надёжный результат.</string>
+    <string name="about_version">Версия %1$s • PRO</string>
+    <string name="about_features_heading">Все возможности приложения</string>
+    <string name="about_measure_title">Точный инклинометр</string>
+    <string name="about_measure_body">Измеряйте угол в градусах или режиме Pitch, переключайте базовые углы 0° и 90°, калибруйте по известной поверхности и следите за показаниями на шкале.</string>
+    <string name="about_camera_title">Уровень с камерой</string>
+    <string name="about_camera_body">Выравнивайте поверхности по горизонтальным и вертикальным направляющим. Используйте сетку и фонарик, а затем сохраните измерение и поделитесь им.</string>
+    <string name="about_tools_title">Инструменты измерения</string>
+    <string name="about_tools_body">Фиксируйте и возобновляйте показания, а также изучайте основные функции во встроенном кратком руководстве.</string>
+    <string name="about_feedback_title">Звук, голос и вибрация</string>
+    <string name="about_feedback_body">Включайте звуковые сигналы приближения, голосовое чтение показаний и вибрацию при достижении нужного угла.</string>
+    <string name="about_personalization_title">Настройте под себя</string>
+    <string name="about_personalization_body">Выберите язык, светлую или тёмную тему, режим OLED и подходящую цветовую палитру.</string>
+    <string name="about_contact_heading">Контакты и поддержка</string>
+    <string name="about_author">Автор: Alexander Lopez · Dall Studio</string>
     <string name="email_copied_toast">Email скопирован!</string>
     <string name="share_contact">Поделиться контактом</string>
     <string name="contact_subject">Обращение по Full Level</string>
